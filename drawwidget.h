@@ -56,6 +56,7 @@ class DrawWidget : public QWidget
         void free_locations(t_mouse_location *locations);
         void set_points_to_null(QPoint p[1000]);
         void removeFirstElem(t_mouse_location **lst);
+        void printPoints(QPoint p[1000]);
         // void scaleImage(double factor);
 
         // double scaleFactor;

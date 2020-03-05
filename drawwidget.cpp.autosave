@@ -104,13 +104,19 @@ void DrawWidget::setRight(double right)
 void DrawWidget::deleteLine()
 {
     if (!locations2.isEmpty())
-        locations2.removeLast();
+        locations2.removeFirst();
     if (!locations2.isEmpty())
-        locations2.removeLast();
+        locations2.removeFirst();
     set_points_to_null(points);
-    if (locations2.count() == 1)
-        locations2.removeLast();
     init_points();
+    if (location_count >= 2)
+    {
+        location_count -= 2;
+        if (location_count == 1)
+            locations2.removeFirst();
+    }
+    else
+        location_count = 0;
     update();
 }
 
@@ -127,6 +133,7 @@ void DrawWidget::deleteAllLines()
 {
     locations2.clear();
     set_points_to_null(points);
+    location_count = 0;
     update();
 }
 
@@ -172,8 +179,8 @@ void DrawWidget::paintEvent(QPaintEvent *event)
     linePen.setWidth(2);
 
     painter.setPen(linePen);
-    if (locations2.count() > 1)
-        painter.drawPolyline(points, locations2.count());
+    if (location_count > 1)
+        painter.drawLines(points, location_count);
     
     painter.scale(scale, scale);
 }
@@ -201,21 +208,12 @@ void DrawWidget::init_points()
 {
     t_mouse_location    tmp;
 
-    for (int i = 0; i < locations2.count(); i++)
+    for (int i = 0; i < location_count; i++)
     {
         tmp = locations2.at(i);
         points[i] = tmp.mousepoint;
-        // cout << tmp.mousepoint.x() << " " << tmp.mousepoint.y() << "\n";
+        cout << tmp.mousepoint.x() << " " << tmp.mousepoint.y()
     }
-    // cout << locations2.count() << "\n\n";
-}
-
-void DrawWidget::printPoints(QPoint p[1000])
-{
-    cout << "Points: \n";
-    for (int i = 0; i < locations2.count(); i++)
-        cout << p[i].x() << " " << p[i].y() << " | ";
-    cout << "\n";
 }
 
 void DrawWidget::mousePressEvent(QMouseEvent *event)
@@ -227,22 +225,25 @@ void DrawWidget::mousePressEvent(QMouseEvent *event)
         new_loc.mousepoint = event->pos();
         new_loc.type_soil = 0;
         if (locations2.isEmpty())
-            locations2.append(new_loc);
+        {
+            locations2.prepend(new_loc);
+            location_count += 1;
+        }
         else
         {
-            locations2.append(new_loc);
+            locations2.prepend(new_loc);
 
             // hier duplicate ik location omdat de drawLines() functie
             // 2 punten per lijn nodig heeft, dus bijv.
             // A, B, B, C, C, D en niet A, B, C, D
-            // t_mouse_location loc_dup;
+            t_mouse_location loc_dup;
 
-            // loc_dup.mousepoint = event->pos();
-            // loc_dup.type_soil = 0;
-            // locations2.append(loc_dup);
+            loc_dup.mousepoint = event->pos();
+            loc_dup.type_soil = 0;
+            locations2.prepend(loc_dup);
+            location_count += 2;
 
             init_points();
-            // printPoints(points);
         }
     }
 }
