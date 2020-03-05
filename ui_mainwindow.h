@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
@@ -24,6 +25,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -52,6 +54,10 @@ public:
     QPushButton *pbLimits;
     QPushButton *pbLines;
     QCheckBox *drawMode;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_4;
+    QComboBox *comboBox;
+    QSpacerItem *horizontalSpacer;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QMenuBar *menuBar;
@@ -156,12 +162,37 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        label_4 = new QLabel(centralWidget);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        horizontalLayout_2->addWidget(label_4);
+
+        comboBox = new QComboBox(centralWidget);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+
+        horizontalLayout_2->addWidget(comboBox);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
         scrollArea = new QScrollArea(centralWidget);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(scrollArea->sizePolicy().hasHeightForWidth());
+        scrollArea->setSizePolicy(sizePolicy);
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 919, 437));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 919, 404));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         verticalLayout->addWidget(scrollArea);
@@ -208,6 +239,18 @@ public:
         pbLimits->setText(QApplication::translate("MainWindow", "Limieten", Q_NULLPTR));
         pbLines->setText(QApplication::translate("MainWindow", "Lijnen", Q_NULLPTR));
         drawMode->setText(QApplication::translate("MainWindow", "Snaptool", Q_NULLPTR));
+        label_4->setText(QApplication::translate("MainWindow", "grondsoort:", Q_NULLPTR));
+        comboBox->clear();
+        comboBox->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "AK", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "HV", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "BV", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "K1", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "K2", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "K3", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Z1", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Z3", Q_NULLPTR)
+        );
         menuBestand->setTitle(QApplication::translate("MainWindow", "Bestand", Q_NULLPTR));
     } // retranslateUi
 

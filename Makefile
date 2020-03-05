@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = qgproscan1.0.0
-DISTDIR = /home/hackerman1/Desktop/qgproscan/.tmp/qgproscan1.0.0
+DISTDIR = /home/hackerman1/Desktop/qgproscan_repo/.tmp/qgproscan1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1
 LIBS          = $(SUBLIBS) -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -50,13 +50,27 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = main.cpp \
-		mainwindow.cpp \
-		drawwidget.cpp moc_mainwindow.cpp \
+SOURCES       = dw_image.cpp \
+		dw_keyevent.cpp \
+		dw_limits.cpp \
+		dw_lines.cpp \
+		dw_main.cpp \
+		dw_mouseevent.cpp \
+		dw_paintevent.cpp \
+		dw_popupmode.cpp \
+		main.cpp \
+		mainwindow.cpp moc_mainwindow.cpp \
 		moc_drawwidget.cpp
-OBJECTS       = main.o \
+OBJECTS       = dw_image.o \
+		dw_keyevent.o \
+		dw_limits.o \
+		dw_lines.o \
+		dw_main.o \
+		dw_mouseevent.o \
+		dw_paintevent.o \
+		dw_popupmode.o \
+		main.o \
 		mainwindow.o \
-		drawwidget.o \
 		moc_mainwindow.o \
 		moc_drawwidget.o
 DIST          = README.md \
@@ -114,6 +128,7 @@ DIST          = README.md \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -133,9 +148,16 @@ DIST          = README.md \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		qgproscan.pro mainwindow.h \
-		drawwidget.h main.cpp \
-		mainwindow.cpp \
-		drawwidget.cpp
+		drawwidget.h dw_image.cpp \
+		dw_keyevent.cpp \
+		dw_limits.cpp \
+		dw_lines.cpp \
+		dw_main.cpp \
+		dw_mouseevent.cpp \
+		dw_paintevent.cpp \
+		dw_popupmode.cpp \
+		main.cpp \
+		mainwindow.cpp
 QMAKE_TARGET  = qgproscan
 DESTDIR       = 
 TARGET        = qgproscan
@@ -201,6 +223,7 @@ Makefile: qgproscan.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.co
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -278,6 +301,7 @@ Makefile: qgproscan.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.co
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -316,7 +340,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.h drawwidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp drawwidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents dw_image.cpp dw_keyevent.cpp dw_limits.cpp dw_lines.cpp dw_main.cpp dw_mouseevent.cpp dw_paintevent.cpp dw_popupmode.cpp main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -356,12 +380,12 @@ moc_mainwindow.cpp: drawwidget.h \
 		mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hackerman1/Desktop/qgproscan -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hackerman1/Desktop/qgproscan_repo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 moc_drawwidget.cpp: drawwidget.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hackerman1/Desktop/qgproscan -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include drawwidget.h -o moc_drawwidget.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hackerman1/Desktop/qgproscan_repo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include drawwidget.h -o moc_drawwidget.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -382,6 +406,30 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
+dw_image.o: dw_image.cpp drawwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_image.o dw_image.cpp
+
+dw_keyevent.o: dw_keyevent.cpp drawwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_keyevent.o dw_keyevent.cpp
+
+dw_limits.o: dw_limits.cpp drawwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_limits.o dw_limits.cpp
+
+dw_lines.o: dw_lines.cpp drawwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_lines.o dw_lines.cpp
+
+dw_main.o: dw_main.cpp drawwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_main.o dw_main.cpp
+
+dw_mouseevent.o: dw_mouseevent.cpp drawwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_mouseevent.o dw_mouseevent.cpp
+
+dw_paintevent.o: dw_paintevent.cpp drawwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_paintevent.o dw_paintevent.cpp
+
+dw_popupmode.o: dw_popupmode.cpp drawwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_popupmode.o dw_popupmode.cpp
+
 main.o: main.cpp mainwindow.h \
 		drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
@@ -390,9 +438,6 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		drawwidget.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
-
-drawwidget.o: drawwidget.cpp drawwidget.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o drawwidget.o drawwidget.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

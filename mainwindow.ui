@@ -135,7 +135,81 @@
        </layout>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>grondsoort:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox">
+          <item>
+           <property name="text">
+            <string>AK</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>HV</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BV</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>K1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>K2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>K3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Z1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Z3</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QScrollArea" name="scrollArea">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="widgetResizable">
          <bool>true</bool>
         </property>
@@ -145,7 +219,7 @@
            <x>0</x>
            <y>0</y>
            <width>919</width>
-           <height>437</height>
+           <height>404</height>
           </rect>
          </property>
         </widget>

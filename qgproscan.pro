@@ -25,9 +25,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    dw_image.cpp \
+    dw_keyevent.cpp \
+    dw_limits.cpp \
+    dw_lines.cpp \
+    dw_main.cpp \
+    dw_mouseevent.cpp \
+    dw_paintevent.cpp \
+    dw_popupmode.cpp \
         main.cpp \
-        mainwindow.cpp \
-    drawwidget.cpp
+        mainwindow.cpp
 
 HEADERS += \
         mainwindow.h \

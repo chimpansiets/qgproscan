@@ -4,6 +4,12 @@
 #include <QWidget>
 #include <QImage>
 #include <QPainter>
+#include <QKeyEvent>
+#include <QMouseEvent>
+#include <QString>
+#include <QMenu>
+#include <QSizePolicy>
+#include <iostream>
 
 enum eMode {MODE_LIMITS, MODE_LINES};
 
