@@ -104,9 +104,7 @@ void DrawWidget::setRight(double right)
 void DrawWidget::deleteLine()
 {
     if (!locations2.isEmpty())
-        locations2.removeLast();
-    if (!locations2.isEmpty())
-        locations2.removeLast();
+        locations2.removeAt(last_inserted.takeLast());
     set_points_to_null(points);
     if (locations2.count() == 1)
         locations2.removeLast();
@@ -223,27 +221,26 @@ void DrawWidget::mousePressEvent(QMouseEvent *event)
     if (event->button() != Qt::RightButton && drawMode == 2)
     {
         t_mouse_location        new_loc;
+        int                     index_to_insert = 0;
 
         new_loc.mousepoint = event->pos();
         new_loc.type_soil = 0;
-        if (locations2.isEmpty())
-            locations2.append(new_loc);
-        else
-        {
-            locations2.append(new_loc);
 
-            // hier duplicate ik location omdat de drawLines() functie
-            // 2 punten per lijn nodig heeft, dus bijv.
-            // A, B, B, C, C, D en niet A, B, C, D
-            // t_mouse_location loc_dup;
-
-            // loc_dup.mousepoint = event->pos();
-            // loc_dup.type_soil = 0;
-            // locations2.append(loc_dup);
-
-            init_points();
-            // printPoints(points);
+        foreach (t_mouse_location tmp, locations2) {
+            if (tmp.mousepoint.x() > new_loc.mousepoint.x())
+                break ;
+            index_to_insert++;
+            cout << "Hello friend\n";
         }
+        cout << "\n\n";
+        last_inserted.append(index_to_insert);
+        locations2.insert(index_to_insert, new_loc);
+        // loc_dup.mousepoint = event->pos();
+        // loc_dup.type_soil = 0;
+        // locations2.append(loc_dup);
+
+        init_points();
+        // printPoints(points);
     }
 }
 

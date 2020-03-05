@@ -64,7 +64,7 @@ class DrawWidget : public QWidget
         QPoint points[1000];
         t_mouse_location *locations = NULL;
         QList<t_mouse_location> locations2;
-        int    location_count = 0;
+        QList<int> last_inserted;
         QPoint m_mousedown_location;
         QPoint m_mousedown_location_first;
         QPoint m_mouserelease_location_first;
