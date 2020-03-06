@@ -13,6 +13,7 @@ void DrawWidget::mousePressEvent(QMouseEvent *event)
         new_loc.mousepoint = event->pos();
         new_loc.type_soil = 0;
 
+        
         foreach (t_mouse_location tmp, locations2) {
             if (tmp.mousepoint.x() > new_loc.mousepoint.x())
                 break ;

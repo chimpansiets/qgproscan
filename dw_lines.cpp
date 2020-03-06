@@ -38,9 +38,7 @@ void DrawWidget::init_points()
     {
         tmp = locations2.at(i);
         points[i] = tmp.mousepoint;
-        // cout << tmp.mousepoint.x() << " " << tmp.mousepoint.y() << "\n";
     }
-    // cout << locations2.count() << "\n\n";
 }
 
 void DrawWidget::printPoints(QPoint p[1000])

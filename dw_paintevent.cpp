@@ -44,7 +44,8 @@ void DrawWidget::paintEvent(QPaintEvent *event)
 
     painter.setPen(linePen);
     if (locations2.count() > 1)
-        painter.drawPolygon(points, locations2.count());
+        painter.drawPolyline(points, locations2.count());
+    // Add polygon mode here, just change the Polyline function to Polygon, very simple.
 
     painter.scale(scale, scale);
 }

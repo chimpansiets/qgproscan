@@ -13,11 +13,24 @@
 
 enum eMode {MODE_LIMITS, MODE_LINES};
 
+typedef enum                s_soilType {
+    AK, HV, BV, K1, K2, K3, Z1, Z3,
+}                           e_soilType;
+
 typedef struct              s_mouse_location {
-QPoint                      mousepoint;
-int                         type_soil; //indicates what type of soil this line corresponds to, useless for now..
-// struct s_mouse_location     *next;
+    QPoint                  mousepoint;
+    int                     type_soil; //indicates what type of soil this line corresponds to, useless for now..
 }                           t_mouse_location;
+
+typedef struct              s_line {
+    QList<t_mouse_location> locations;
+    e_soilType              soilType;
+}                           t_line;
+
+typedef struct              s_soilList {
+    QList<t_line>           lines;
+    e_soilType              soilType;
+}                           t_soilList;
 
 class DrawWidget : public QWidget
 {
@@ -51,6 +64,7 @@ class DrawWidget : public QWidget
 
     private:
         // void createActions();
+        void initSoils();
         t_mouse_location location_dup(t_mouse_location *loc);
         void lstadd_location(t_mouse_location **head, t_mouse_location *toAdd);
         void init_points();
@@ -66,20 +80,22 @@ class DrawWidget : public QWidget
         // void scaleImage(double factor);
 
         // double scaleFactor;
-        QPoint m_mouse_location;
-        QPoint points[1000];
-        t_mouse_location *locations = NULL;
+        QPoint                  m_mouse_location;
+        QPoint                  points[1000];
+        t_mouse_location        *locations = NULL;
         QList<t_mouse_location> locations2;
-        QList<int> last_inserted;
-        QPoint m_mousedown_location;
-        QPoint m_mousedown_location_first;
-        QPoint m_mouserelease_location_first;
-        QPoint m_mousedown_location_second;
-        QPoint m_mouserelease_location_second;
-        QPoint m_topleft;
-        QPoint m_bottomright;
-        QImage *m_img;
-        eMode m_mode;
+        t_soilList              soils[8];
+        e_soilType              current_soil;
+        QList<int>              last_inserted;
+        QPoint                  m_mousedown_location;
+        QPoint                  m_mousedown_location_first;
+        QPoint                  m_mouserelease_location_first;
+        QPoint                  m_mousedown_location_second;
+        QPoint                  m_mouserelease_location_second;
+        QPoint                  m_topleft;
+        QPoint                  m_bottomright;
+        QImage                  *m_img;
+        eMode                   m_mode;
 
         qreal scale = 1;
         int drawMode = 0;
