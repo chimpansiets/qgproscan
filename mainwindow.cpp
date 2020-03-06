@@ -94,41 +94,7 @@ void MainWindow::on_pbLines_clicked()
     changeClickMode();
 }
 
-// void MainWindow::zoomIn()
-// {
-//     m_view->scaleImage(1.25);
-// }
-
-// void MainWindow::zoomOut()
-// {
-//     m_view->scaleImage(0.75);
-// }
-
-
-// void MainWindow::createActions()
-// {
-//     zoomInAct = new QAction(tr("Zoom &In (25%)"), this);
-//     zoomInAct->setShortcut(tr("Ctrl++"));
-//     zoomInAct->setEnabled(false);
-//     connect(zoomInAct, SIGNAL(triggered()), this, SLOT(zoomIn()));
-
-//     zoomOutAct = new QAction(tr("Zoom &Out (25%)"), this);
-//     zoomOutAct->setShortcut(tr("Ctrl+-"));
-//     zoomOutAct->setEnabled(false);
-//     connect(zoomOutAct, SIGNAL(triggered()), this, SLOT(zoomOut()));
-// }
-
-
-// void MainWindow::scaleImage(double factor)
-// {
-//     Q_ASSERT(pixmap());
-//     scaleFactor *= factor;
-//     resize(scaleFactor * pixmap()->size());
-
-//     adjustScrollBar(ui->scrollArea->horizontalScrollBar(), factor);
-//     adjustScrollBar(ui->scrollArea->verticalScrollBar(), factor);
-
-//     zoomInAct->setEnabled(scaleFactor < 3.0);
-//     zoomOutAct->setEnabled(scaleFactor > 0.333);
-// }
-
+void MainWindow::on_comboBox_currentIndexChanged(int index)
+{
+    m_view->setSoil(index);
+}

@@ -11,16 +11,28 @@ void DrawWidget::mousePressEvent(QMouseEvent *event)
         int                     index_to_insert = 0;
 
         new_loc.mousepoint = event->pos();
-        new_loc.type_soil = 0;
 
-        
+//        if (soils[current_soil].lines.isEmpty())
+//        {
+//            t_line newLine;
+
+//            newLine.soilType = current_soil;
+//            soils[current_soil].lines.append(newLine);
+//        }
+
+//        foreach (t_line line, soils[current_soil].lines) {
+//            cout << "Hello\n";
+//            if (line.locations.at(current_line).mousepoint.x() > new_loc.mousepoint.x())
+//                break ;
+//            index_to_insert++;
+//        }
         foreach (t_mouse_location tmp, locations2) {
             if (tmp.mousepoint.x() > new_loc.mousepoint.x())
                 break ;
             index_to_insert++;
         }
-        cout << "\n\n";
         last_inserted.append(index_to_insert);
+
         locations2.insert(index_to_insert, new_loc);
 
         init_points();

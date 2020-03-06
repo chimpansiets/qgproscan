@@ -1,12 +1,16 @@
 
-#include "drawwidget.h"
+#include "linedrawer.h"
+
+using namespace std;
 
 void DrawWidget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
 
     QPainter painter(this);
+    // LineDrawer ld;
 
+    // ld.drawCursorFollow(painter);
     if (m_img) painter.drawImage(0,0,*m_img);
         painter.drawLine(m_mouse_location.x(), 0, m_mouse_location.x(),height());
         painter.drawLine(0, m_mouse_location.y(), width(), m_mouse_location.y());
@@ -45,7 +49,7 @@ void DrawWidget::paintEvent(QPaintEvent *event)
     painter.setPen(linePen);
     if (locations2.count() > 1)
         painter.drawPolyline(points, locations2.count());
-    // Add polygon mode here, just change the Polyline function to Polygon, very simple.
+    // LineDrawer  ld;
 
-    painter.scale(scale, scale);
+    // ld.drawCursorFollow(this);
 }

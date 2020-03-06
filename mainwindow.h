@@ -34,10 +34,13 @@ class MainWindow : public QMainWindow
         // void zoomIn();
         // void zoomOut();
 
-
-private:
-        Ui::MainWindow *ui;
+        void on_comboBox_currentIndexChanged(int index);
+    
+    protected:
         DrawWidget *m_view;
+
+    private:
+        Ui::MainWindow *ui;
         QGraphicsScene *m_scene;
         // QAction *zoomInAct;
         // QAction *zoomOutAct;

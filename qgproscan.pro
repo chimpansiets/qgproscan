@@ -33,10 +33,13 @@ SOURCES += \
     dw_mouseevent.cpp \
     dw_paintevent.cpp \
     dw_popupmode.cpp \
+    dw_soils.cpp \
+    linedrawer.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
+    linedrawer.h \
         mainwindow.h \
     drawwidget.h
 

@@ -4,8 +4,6 @@ using namespace std;
 
 void DrawWidget::initSoils()
 {
-    t_soilList  soil_elem[8];
-
     soils[0].soilType = AK;
     soils[1].soilType = HV;
     soils[2].soilType = BV;
