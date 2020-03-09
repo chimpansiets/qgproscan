@@ -10,6 +10,7 @@
 #include <QMenu>
 #include <QSizePolicy>
 #include <iostream>
+#include <QVector>
 
 enum eMode {MODE_LIMITS, MODE_LINES};
 
@@ -23,7 +24,7 @@ typedef struct              s_mouse_location {
 }                           t_mouse_location;
 
 typedef struct              s_line {
-    QList<t_mouse_location> locations;
+    QList<QPoint>           locations;
     e_soilType              soilType;
 }                           t_line;
 

@@ -14,6 +14,9 @@ void DrawWidget::set_points_to_null(QPoint p[1000])
 
 void DrawWidget::deleteLine()
 {
+    t_line  temp_line;
+    
+    if (!soils[current_soil].lines.at(current_line).isEmpty())
     if (!locations2.isEmpty())
         locations2.removeAt(last_inserted.takeLast());
     set_points_to_null(points);
