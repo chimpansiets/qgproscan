@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DrawWidget_t {
     QByteArrayData data[19];
-    char stringdata0[180];
+    char stringdata0[181];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -46,16 +46,16 @@ QT_MOC_LITERAL(11, 109, 7), // "setLeft"
 QT_MOC_LITERAL(12, 117, 4), // "left"
 QT_MOC_LITERAL(13, 122, 8), // "setRight"
 QT_MOC_LITERAL(14, 131, 5), // "right"
-QT_MOC_LITERAL(15, 137, 10), // "deleteLine"
-QT_MOC_LITERAL(16, 148, 14), // "deleteAllLines"
-QT_MOC_LITERAL(17, 163, 11), // "setDrawMode"
-QT_MOC_LITERAL(18, 175, 4) // "mode"
+QT_MOC_LITERAL(15, 137, 11), // "deletePoint"
+QT_MOC_LITERAL(16, 149, 14), // "deleteAllLines"
+QT_MOC_LITERAL(17, 164, 11), // "setDrawMode"
+QT_MOC_LITERAL(18, 176, 4) // "mode"
 
     },
     "DrawWidget\0setTopLeft\0\0setBottomRight\0"
     "showPopupMenuLimits\0pos\0showPopupMenuLines\0"
     "setTop\0top\0setBottom\0bottom\0setLeft\0"
-    "left\0setRight\0right\0deleteLine\0"
+    "left\0setRight\0right\0deletePoint\0"
     "deleteAllLines\0setDrawMode\0mode"
 };
 #undef QT_MOC_LITERAL
@@ -116,7 +116,7 @@ void DrawWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->setBottom((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 6: _t->setLeft((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 7: _t->setRight((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 8: _t->deleteLine(); break;
+        case 8: _t->deletePoint(); break;
         case 9: _t->deleteAllLines(); break;
         case 10: _t->setDrawMode((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;

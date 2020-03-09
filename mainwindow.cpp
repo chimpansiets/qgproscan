@@ -20,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_view = new DrawWidget();
-
     ui->scrollArea->setWidget(m_view);
 
     connect(ui->dspTop, SIGNAL(valueChanged(double)), m_view, SLOT(setTop(double)));
@@ -94,7 +93,17 @@ void MainWindow::on_pbLines_clicked()
     changeClickMode();
 }
 
-void MainWindow::on_comboBox_currentIndexChanged(int index)
+void MainWindow::on_soilBox_currentIndexChanged(int index)
 {
     m_view->setSoil(index);
 }
+
+void MainWindow::on_lineButton_clicked()
+{
+    static int      line_counter = 1;
+    QString         str;
+
+    str = QString("Line %1").arg(line_counter++);
+    ui->lineBox->addItem(str);
+}
+

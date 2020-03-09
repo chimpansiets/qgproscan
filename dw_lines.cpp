@@ -12,24 +12,31 @@ void DrawWidget::set_points_to_null(QPoint p[1000])
     }
 }
 
-void DrawWidget::deleteLine()
+void DrawWidget::deletePoint()
 {
     t_line  temp_line;
-    
-    if (!soils[current_soil].lines.at(current_line).isEmpty())
-    if (!locations2.isEmpty())
-        locations2.removeAt(last_inserted.takeLast());
-    set_points_to_null(points);
-    if (locations2.count() == 1)
-        locations2.removeLast();
-    init_points();
+
+    if (!soils[current_soil].lines.at(current_line).locations.isEmpty())
+    {
+        temp_line = soils[current_soil].lines.at(current_line);
+        temp_line.locations.removeAt(last_inserted.takeLast());
+    }
+    if (temp_line.locations.count() == 1)
+        temp_line.locations.removeLast();
+    soils[current_soil].lines.replace(current_line, temp_line);
     update();
 }
 
 void DrawWidget::deleteAllLines()
 {
-    locations2.clear();
-    set_points_to_null(points);
+
+    for (int i = 0; i < AMOUNT_OF_SOILTYPES; i++)
+    {
+        foreach (t_line temp_line, soils[i].lines) {
+            temp_line.locations.clear();
+            soils[i].lines.replace(0, temp_line);
+        }
+    }
     update();
 }
 

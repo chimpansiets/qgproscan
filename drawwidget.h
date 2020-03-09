@@ -12,6 +12,8 @@
 #include <iostream>
 #include <QVector>
 
+#define AMOUNT_OF_SOILTYPES 8
+
 enum eMode {MODE_LIMITS, MODE_LINES};
 
 typedef enum                s_soilType {
@@ -58,7 +60,7 @@ class DrawWidget : public QWidget
         void setBottom(double bottom);
         void setLeft(double left);
         void setRight(double right);
-        void deleteLine();
+        void deletePoint();
         void deleteAllLines();
         void setDrawMode(int mode);
     

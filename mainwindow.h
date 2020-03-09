@@ -34,9 +34,11 @@ class MainWindow : public QMainWindow
         // void zoomIn();
         // void zoomOut();
 
-        void on_comboBox_currentIndexChanged(int index);
-    
-    protected:
+        void on_soilBox_currentIndexChanged(int index);
+
+        void on_lineButton_clicked();
+
+protected:
         DrawWidget *m_view;
 
     private:

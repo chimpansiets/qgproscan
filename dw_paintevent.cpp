@@ -47,11 +47,10 @@ void DrawWidget::paintEvent(QPaintEvent *event)
     linePen.setWidth(2);
 
     painter.setPen(linePen);
-    // 8 is a magic number for the amount of different types of soil.
     QVector<QPoint> vector_points;
     QPoint          *data_pointer;
     
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < AMOUNT_OF_SOILTYPES; i++) {
         foreach (t_line line, soils[i].lines) {
             vector_points = line.locations.toVector();
             data_pointer = vector_points.data();

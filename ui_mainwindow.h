@@ -55,8 +55,10 @@ public:
     QPushButton *pbLines;
     QCheckBox *drawMode;
     QHBoxLayout *horizontalLayout_2;
-    QLabel *label_4;
-    QComboBox *comboBox;
+    QLabel *grondsoort;
+    QComboBox *soilBox;
+    QComboBox *lineBox;
+    QPushButton *lineButton;
     QSpacerItem *horizontalSpacer;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
@@ -165,15 +167,25 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        label_4 = new QLabel(centralWidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        grondsoort = new QLabel(centralWidget);
+        grondsoort->setObjectName(QStringLiteral("grondsoort"));
 
-        horizontalLayout_2->addWidget(label_4);
+        horizontalLayout_2->addWidget(grondsoort);
 
-        comboBox = new QComboBox(centralWidget);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
+        soilBox = new QComboBox(centralWidget);
+        soilBox->setObjectName(QStringLiteral("soilBox"));
 
-        horizontalLayout_2->addWidget(comboBox);
+        horizontalLayout_2->addWidget(soilBox);
+
+        lineBox = new QComboBox(centralWidget);
+        lineBox->setObjectName(QStringLiteral("lineBox"));
+
+        horizontalLayout_2->addWidget(lineBox);
+
+        lineButton = new QPushButton(centralWidget);
+        lineButton->setObjectName(QStringLiteral("lineButton"));
+
+        horizontalLayout_2->addWidget(lineButton);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -239,9 +251,9 @@ public:
         pbLimits->setText(QApplication::translate("MainWindow", "Limieten", Q_NULLPTR));
         pbLines->setText(QApplication::translate("MainWindow", "Lijnen", Q_NULLPTR));
         drawMode->setText(QApplication::translate("MainWindow", "Snaptool", Q_NULLPTR));
-        label_4->setText(QApplication::translate("MainWindow", "grondsoort:", Q_NULLPTR));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
+        grondsoort->setText(QApplication::translate("MainWindow", "grondsoort:", Q_NULLPTR));
+        soilBox->clear();
+        soilBox->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "AK", Q_NULLPTR)
          << QApplication::translate("MainWindow", "HV", Q_NULLPTR)
          << QApplication::translate("MainWindow", "BV", Q_NULLPTR)
@@ -251,6 +263,7 @@ public:
          << QApplication::translate("MainWindow", "Z1", Q_NULLPTR)
          << QApplication::translate("MainWindow", "Z3", Q_NULLPTR)
         );
+        lineButton->setText(QApplication::translate("MainWindow", "Add Line", Q_NULLPTR));
         menuBestand->setTitle(QApplication::translate("MainWindow", "Bestand", Q_NULLPTR));
     } // retranslateUi
 

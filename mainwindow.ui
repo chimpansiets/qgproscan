@@ -137,14 +137,14 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QLabel" name="label_4">
+         <widget class="QLabel" name="grondsoort">
           <property name="text">
            <string>grondsoort:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBox">
+         <widget class="QComboBox" name="soilBox">
           <item>
            <property name="text">
             <string>AK</string>
@@ -185,6 +185,16 @@
             <string>Z3</string>
            </property>
           </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="lineBox"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="lineButton">
+          <property name="text">
+           <string>Add Line</string>
+          </property>
          </widget>
         </item>
         <item>

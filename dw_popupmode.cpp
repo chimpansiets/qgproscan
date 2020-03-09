@@ -24,7 +24,7 @@ void DrawWidget::showPopupMenuLimits(const QPoint &pos)
 void DrawWidget::showPopupMenuLines(const QPoint &pos)
 {
     QMenu *menu = new QMenu;
-    menu->addAction("Wissen", this, SLOT(deleteLine()));
+    menu->addAction("Wissen", this, SLOT(deletePoint()));
     menu->addAction("Alles wissen", this, SLOT(deleteAllLines()));
     menu->exec(this->mapToGlobal(pos));
 }
