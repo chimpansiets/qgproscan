@@ -107,3 +107,8 @@ void MainWindow::on_lineButton_clicked()
     m_view->addLineBackend(str, ui->lineBox->currentIndex());
     ui->lineBox->addItem(str);
 }
+
+void MainWindow::on_lineBox_currentIndexChanged(int index)
+{
+    m_view->changeCurrentLine(index);
+}

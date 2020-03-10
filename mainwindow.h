@@ -35,6 +35,7 @@ class MainWindow : public QMainWindow
         // void zoomOut();
 
         void on_soilBox_currentIndexChanged(int index);
+        void on_lineBox_currentIndexChanged(int index);
 
         void on_lineButton_clicked();
 

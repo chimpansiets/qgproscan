@@ -42,6 +42,7 @@ class DrawWidget : public QWidget
         void setMode(eMode mode);
         void setSoil(int index);
         void addLineBackend(QString str, int index);
+        void changeCurrentLine(int index);
 
     signals:
         //void topLeftChanged();

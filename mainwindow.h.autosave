@@ -34,11 +34,11 @@ class MainWindow : public QMainWindow
         // void zoomIn();
         // void zoomOut();
 
-        void on_lineBox_currentIndexChanged(int index);
+        void on_soilBox_currentIndexChanged(int index);
 
         void on_lineButton_clicked();
 
-        void on_soilBox_currentIndexChanged(int index);
+        void on_lineBox_currentIndexChanged(int index);
         
 protected:
         DrawWidget *m_view;
@@ -46,6 +46,7 @@ protected:
     private:
         Ui::MainWindow *ui;
         QGraphicsScene *m_scene;
+        void print_lines_combobox(QList<QString> lst);
         // QAction *zoomInAct;
         // QAction *zoomOutAct;
 };

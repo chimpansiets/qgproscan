@@ -48,5 +48,13 @@ void DrawWidget::addLineBackend(QString str, int index)
     newLine.soilType = current_soil;
     soils[current_soil].lines.append(newLine);
     soils[current_soil].lines_combobox.append(str);
+    if (index == -1)
+        current_line = 0;
+    else
+        current_line = index;
+}
+
+void DrawWidget::changeCurrentLine(int index)
+{
     current_line = index;
 }
