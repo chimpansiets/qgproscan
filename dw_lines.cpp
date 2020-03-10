@@ -16,14 +16,15 @@ void DrawWidget::deletePoint()
 {
     t_line  temp_line;
 
-    if (!soils[current_soil].lines.at(current_line).locations.isEmpty())
+    if (!soils[current_soil].lines.at(current_line).locations.isEmpty() && \
+        !last_inserted.isEmpty())
     {
         temp_line = soils[current_soil].lines.at(current_line);
         temp_line.locations.removeAt(last_inserted.takeLast());
+        if (temp_line.locations.count() == 1)
+            temp_line.locations.removeLast();
+        soils[current_soil].lines.replace(current_line, temp_line);
     }
-    if (temp_line.locations.count() == 1)
-        temp_line.locations.removeLast();
-    soils[current_soil].lines.replace(current_line, temp_line);
     update();
 }
 
@@ -40,21 +41,12 @@ void DrawWidget::deleteAllLines()
     update();
 }
 
-void DrawWidget::init_points()
+void DrawWidget::addLineBackend(QString str, int index)
 {
-    t_mouse_location    tmp;
+    t_line  newLine;
 
-    for (int i = 0; i < locations2.count(); i++)
-    {
-        tmp = locations2.at(i);
-        points[i] = tmp.mousepoint;
-    }
-}
-
-void DrawWidget::printPoints(QPoint p[1000])
-{
-    cout << "Points: \n";
-    for (int i = 0; i < locations2.count(); i++)
-        cout << p[i].x() << " " << p[i].y() << " | ";
-    cout << "\n";
+    newLine.soilType = current_soil;
+    soils[current_soil].lines.append(newLine);
+    soils[current_soil].lines_combobox.append(str);
+    current_line = index;
 }

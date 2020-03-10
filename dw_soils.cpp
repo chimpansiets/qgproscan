@@ -7,4 +7,6 @@ void DrawWidget::setSoil(int index)
 {
     current_soil = (e_soilType)index;
     cout << "current_soil: " << current_soil << "\n";
+    if (!last_inserted.isEmpty())
+        last_inserted.clear();
 }

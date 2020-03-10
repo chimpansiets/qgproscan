@@ -57,8 +57,6 @@ void DrawWidget::paintEvent(QPaintEvent *event)
             painter.drawPolyline(data_pointer, line.locations.count());
         }
     } 
-    if (locations2.count() > 1)
-        painter.drawPolyline(points, locations2.count());
     // LineDrawer  ld;
 
     // ld.drawCursorFollow(this);

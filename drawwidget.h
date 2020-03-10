@@ -20,11 +20,6 @@ typedef enum                s_soilType {
     AK, HV, BV, K1, K2, K3, Z1, Z3,
 }                           e_soilType;
 
-typedef struct              s_mouse_location {
-    QPoint                  mousepoint;
-    e_soilType              type_soil; //indicates what type of soil this line corresponds to, useless for now..
-}                           t_mouse_location;
-
 typedef struct              s_line {
     QList<QPoint>           locations;
     e_soilType              soilType;
@@ -32,6 +27,7 @@ typedef struct              s_line {
 
 typedef struct              s_soilList {
     QList<t_line>           lines;
+    QList<QString>          lines_combobox;
     e_soilType              soilType;
 }                           t_soilList;
 
@@ -45,6 +41,7 @@ class DrawWidget : public QWidget
         void saveImageToFile(const QString filename);
         void setMode(eMode mode);
         void setSoil(int index);
+        void addLineBackend(QString str, int index);
 
     signals:
         //void topLeftChanged();
@@ -73,28 +70,20 @@ class DrawWidget : public QWidget
         int                     m_right = 0;
         double                  m_top = 0.;
         double                  m_bottom = 0.;
-        QList<t_mouse_location> locations2;
         QPoint                  points[1000];
 
     private:
         // void createActions();
         void initSoils();
-        t_mouse_location location_dup(t_mouse_location *loc);
-        void lstadd_location(t_mouse_location **head, t_mouse_location *toAdd);
-        void init_points();
         void paintEvent(QPaintEvent *event);
         void keyPressEvent(QKeyEvent *event);
         void mouseMoveEvent(QMouseEvent* event);
         void mousePressEvent(QMouseEvent *event);
         void mouseReleaseEvent(QMouseEvent *event);
-        void free_locations(t_mouse_location *locations);
         void set_points_to_null(QPoint p[1000]);
-        void removeFirstElem(t_mouse_location **lst);
-        void printPoints(QPoint p[1000]);
         // void scaleImage(double factor);
 
         // double scaleFactor;
-        t_mouse_location        *locations = NULL;
         t_soilList              soils[8];
         e_soilType              current_soil = AK;
         int                     current_line = 0;

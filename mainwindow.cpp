@@ -104,6 +104,6 @@ void MainWindow::on_lineButton_clicked()
     QString         str;
 
     str = QString("Line %1").arg(line_counter++);
+    m_view->addLineBackend(str, ui->lineBox->currentIndex());
     ui->lineBox->addItem(str);
 }
-
