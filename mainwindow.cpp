@@ -93,6 +93,13 @@ void MainWindow::on_pbLines_clicked()
     changeClickMode();
 }
 
+void MainWindow::initializeLineBox()
+{
+    // here the lines of the corresponding soiltype
+    // are loaded into the lineBox.
+
+}
+
 void MainWindow::on_soilBox_currentIndexChanged(int index)
 {
     m_view->setSoil(index);
@@ -102,16 +109,17 @@ void MainWindow::on_soilBox_currentIndexChanged(int index)
     // for now im just clearing, going to set up lists that save
     // these lines per soil.
     ui->lineBox->clear();
+    // initializeLineBox();
 }
 
 void MainWindow::on_lineButton_clicked()
 {
-    static int      line_counter = 1;
     QString         str;
 
-    str = QString("Line %1").arg(line_counter++);
+    str = QString("Line %1").arg(m_view->countLines() + 1);
     m_view->addLineBackend(str, ui->lineBox->currentIndex());
     ui->lineBox->addItem(str);
+    ui->lineBox->setCurrentIndex(ui->lineBox->count() - 1);
 }
 
 void MainWindow::on_lineBox_currentIndexChanged(int index)

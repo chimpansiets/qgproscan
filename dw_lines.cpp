@@ -58,3 +58,8 @@ void DrawWidget::changeCurrentLine(int index)
 {
     current_line = index;
 }
+
+int  DrawWidget::countLines()
+{
+    return (soils[current_soil].lines.count());
+}

@@ -43,6 +43,7 @@ class DrawWidget : public QWidget
         void setSoil(int index);
         void addLineBackend(QString str, int index);
         void changeCurrentLine(int index);
+        int  countLines();
 
     signals:
         //void topLeftChanged();

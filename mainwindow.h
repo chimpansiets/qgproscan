@@ -46,6 +46,7 @@ protected:
         Ui::MainWindow *ui;
         QGraphicsScene *m_scene;
         void print_lines_combobox(QList<QString> lst);
+        void initializeLineBox();
         // QAction *zoomInAct;
         // QAction *zoomOutAct;
 };
