@@ -45,6 +45,7 @@ void DrawWidget::addLineBackend(QString str, int index)
 {
     t_line  newLine;
 
+    cout << "Hi\n";
     newLine.soilType = current_soil;
     soils[current_soil].lines.append(newLine);
     soils[current_soil].lines_combobox.append(str);

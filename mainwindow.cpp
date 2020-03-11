@@ -21,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_view = new DrawWidget();
     ui->scrollArea->setWidget(m_view);
+    ui->lineBox->addItem(QString("Line 1"));
+    m_view->addLineBackend(QString("Line 1"), ui->lineBox->currentIndex());
 
     connect(ui->dspTop, SIGNAL(valueChanged(double)), m_view, SLOT(setTop(double)));
     connect(ui->dspBottom, SIGNAL(valueChanged(double)), m_view, SLOT(setBottom(double)));
@@ -97,7 +99,16 @@ void MainWindow::initializeLineBox()
 {
     // here the lines of the corresponding soiltype
     // are loaded into the lineBox.
-
+    if (m_view->countLines() == 0)
+    {
+        ui->lineBox->addItem(QString("Line 1"));
+        m_view->addLineBackend(QString("Line 1"), ui->lineBox->currentIndex());
+    }
+    else {
+        for (int i = 0; i < m_view->countLines(); i++) {
+            ui->lineBox->addItem(QString("Line %1").arg(i + 1));
+        }
+    }
 }
 
 void MainWindow::on_soilBox_currentIndexChanged(int index)
@@ -109,14 +120,14 @@ void MainWindow::on_soilBox_currentIndexChanged(int index)
     // for now im just clearing, going to set up lists that save
     // these lines per soil.
     ui->lineBox->clear();
-    // initializeLineBox();
+    initializeLineBox();
 }
 
 void MainWindow::on_lineButton_clicked()
 {
     QString         str;
 
-    str = QString("Line %1").arg(m_view->countLines() + 1);
+    str = QString("Line %1").arg(ui->lineBox->count() + 1);
     m_view->addLineBackend(str, ui->lineBox->currentIndex());
     ui->lineBox->addItem(str);
     ui->lineBox->setCurrentIndex(ui->lineBox->count() - 1);
