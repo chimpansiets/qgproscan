@@ -46,11 +46,12 @@ void DrawWidget::paintEvent(QPaintEvent *event)
     QPen linePen(Qt::black);
     linePen.setWidth(2);
 
-    painter.setPen(linePen);
     QVector<QPoint> vector_points;
     QPoint          *data_pointer;
     
     for (int i = 0; i < AMOUNT_OF_SOILTYPES; i++) {
+        linePen.setColor(setColor(soils[i].soilType));
+        painter.setPen(linePen);
         foreach (t_line line, soils[i].lines) {
             vector_points = line.locations.toVector();
             data_pointer = vector_points.data();

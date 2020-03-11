@@ -83,6 +83,7 @@ class DrawWidget : public QWidget
         void mousePressEvent(QMouseEvent *event);
         void mouseReleaseEvent(QMouseEvent *event);
         void set_points_to_null(QPoint p[1000]);
+        QColor setColor(e_soilType soil_type);
         // void scaleImage(double factor);
 
         // double scaleFactor;

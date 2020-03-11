@@ -33,6 +33,7 @@ SOURCES += \
     dw_mouseevent.cpp \
     dw_paintevent.cpp \
     dw_popupmode.cpp \
+    dw_setColor.cpp \
     dw_soils.cpp \
     linedrawer.cpp \
         main.cpp \

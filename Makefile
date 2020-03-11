@@ -58,6 +58,7 @@ SOURCES       = dw_image.cpp \
 		dw_mouseevent.cpp \
 		dw_paintevent.cpp \
 		dw_popupmode.cpp \
+		dw_setColor.cpp \
 		dw_soils.cpp \
 		linedrawer.cpp \
 		main.cpp \
@@ -71,6 +72,7 @@ OBJECTS       = dw_image.o \
 		dw_mouseevent.o \
 		dw_paintevent.o \
 		dw_popupmode.o \
+		dw_setColor.o \
 		dw_soils.o \
 		linedrawer.o \
 		main.o \
@@ -161,6 +163,7 @@ DIST          = README.md \
 		dw_mouseevent.cpp \
 		dw_paintevent.cpp \
 		dw_popupmode.cpp \
+		dw_setColor.cpp \
 		dw_soils.cpp \
 		linedrawer.cpp \
 		main.cpp \
@@ -347,7 +350,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents linedrawer.h mainwindow.h drawwidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents dw_image.cpp dw_keyevent.cpp dw_limits.cpp dw_lines.cpp dw_main.cpp dw_mouseevent.cpp dw_paintevent.cpp dw_popupmode.cpp dw_soils.cpp linedrawer.cpp main.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents dw_image.cpp dw_keyevent.cpp dw_limits.cpp dw_lines.cpp dw_main.cpp dw_mouseevent.cpp dw_paintevent.cpp dw_popupmode.cpp dw_setColor.cpp dw_soils.cpp linedrawer.cpp main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -384,15 +387,12 @@ compiler_moc_header_make_all: moc_mainwindow.cpp moc_drawwidget.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_drawwidget.cpp
 moc_mainwindow.cpp: drawwidget.h \
-		linedrawer.h \
 		mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hackerman1/Desktop/qgproscan_repo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
-moc_drawwidget.cpp: linedrawer.h \
-		drawwidget.h \
-		drawwidget.h \
+moc_drawwidget.cpp: drawwidget.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hackerman1/Desktop/qgproscan_repo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include drawwidget.h -o moc_drawwidget.cpp
@@ -416,40 +416,35 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-dw_image.o: dw_image.cpp drawwidget.h \
-		linedrawer.h
+dw_image.o: dw_image.cpp drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_image.o dw_image.cpp
 
-dw_keyevent.o: dw_keyevent.cpp drawwidget.h \
-		linedrawer.h
+dw_keyevent.o: dw_keyevent.cpp drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_keyevent.o dw_keyevent.cpp
 
-dw_limits.o: dw_limits.cpp drawwidget.h \
-		linedrawer.h
+dw_limits.o: dw_limits.cpp drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_limits.o dw_limits.cpp
 
-dw_lines.o: dw_lines.cpp drawwidget.h \
-		linedrawer.h
+dw_lines.o: dw_lines.cpp drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_lines.o dw_lines.cpp
 
-dw_main.o: dw_main.cpp drawwidget.h \
-		linedrawer.h
+dw_main.o: dw_main.cpp drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_main.o dw_main.cpp
 
-dw_mouseevent.o: dw_mouseevent.cpp drawwidget.h \
-		linedrawer.h
+dw_mouseevent.o: dw_mouseevent.cpp drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_mouseevent.o dw_mouseevent.cpp
 
-dw_paintevent.o: dw_paintevent.cpp drawwidget.h \
-		linedrawer.h
+dw_paintevent.o: dw_paintevent.cpp linedrawer.h \
+		drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_paintevent.o dw_paintevent.cpp
 
-dw_popupmode.o: dw_popupmode.cpp drawwidget.h \
-		linedrawer.h
+dw_popupmode.o: dw_popupmode.cpp drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_popupmode.o dw_popupmode.cpp
 
-dw_soils.o: dw_soils.cpp drawwidget.h \
-		linedrawer.h
+dw_setColor.o: dw_setColor.cpp drawwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_setColor.o dw_setColor.cpp
+
+dw_soils.o: dw_soils.cpp drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_soils.o dw_soils.cpp
 
 linedrawer.o: linedrawer.cpp linedrawer.h \
@@ -457,13 +452,11 @@ linedrawer.o: linedrawer.cpp linedrawer.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o linedrawer.o linedrawer.cpp
 
 main.o: main.cpp mainwindow.h \
-		drawwidget.h \
-		linedrawer.h
+		drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
 		drawwidget.h \
-		linedrawer.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 

@@ -30,14 +30,8 @@ void DrawWidget::deletePoint()
 
 void DrawWidget::deleteAllLines()
 {
-
     for (int i = 0; i < AMOUNT_OF_SOILTYPES; i++)
-    {
-        foreach (t_line temp_line, soils[i].lines) {
-            temp_line.locations.clear();
-            soils[i].lines.replace(0, temp_line);
-        }
-    }
+        soils[i].lines.clear();
     update();
 }
 
@@ -45,7 +39,6 @@ void DrawWidget::addLineBackend(QString str, int index)
 {
     t_line  newLine;
 
-    cout << "Hi\n";
     newLine.soilType = current_soil;
     soils[current_soil].lines.append(newLine);
     soils[current_soil].lines_combobox.append(str);

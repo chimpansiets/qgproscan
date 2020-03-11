@@ -114,7 +114,7 @@ void MainWindow::initializeLineBox()
 void MainWindow::on_soilBox_currentIndexChanged(int index)
 {
     m_view->setSoil(index);
-    // m_view->changeCurrentLine(0);
+    // m_view->changeCurrentLine(0)
     // whenever soil type changes, lineBox needs to be cleared and filled
     // with corresponding lines, perhaps previously made
     // for now im just clearing, going to set up lists that save
