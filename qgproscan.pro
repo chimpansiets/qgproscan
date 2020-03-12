@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    drawwidget.cpp \
     dw_image.cpp \
     dw_keyevent.cpp \
     dw_limits.cpp \

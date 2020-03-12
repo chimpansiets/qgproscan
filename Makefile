@@ -50,30 +50,12 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = dw_image.cpp \
-		dw_keyevent.cpp \
-		dw_limits.cpp \
-		dw_lines.cpp \
-		dw_main.cpp \
-		dw_mouseevent.cpp \
-		dw_paintevent.cpp \
-		dw_popupmode.cpp \
-		dw_setColor.cpp \
-		dw_soils.cpp \
+SOURCES       = drawwidget.cpp \
 		linedrawer.cpp \
 		main.cpp \
 		mainwindow.cpp moc_mainwindow.cpp \
 		moc_drawwidget.cpp
-OBJECTS       = dw_image.o \
-		dw_keyevent.o \
-		dw_limits.o \
-		dw_lines.o \
-		dw_main.o \
-		dw_mouseevent.o \
-		dw_paintevent.o \
-		dw_popupmode.o \
-		dw_setColor.o \
-		dw_soils.o \
+OBJECTS       = drawwidget.o \
 		linedrawer.o \
 		main.o \
 		mainwindow.o \
@@ -155,7 +137,8 @@ DIST          = README.md \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		qgproscan.pro linedrawer.h \
 		mainwindow.h \
-		drawwidget.h dw_image.cpp \
+		drawwidget.h drawwidget.cpp \
+		dw_image.cpp \
 		dw_keyevent.cpp \
 		dw_limits.cpp \
 		dw_lines.cpp \
@@ -350,7 +333,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents linedrawer.h mainwindow.h drawwidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents dw_image.cpp dw_keyevent.cpp dw_limits.cpp dw_lines.cpp dw_main.cpp dw_mouseevent.cpp dw_paintevent.cpp dw_popupmode.cpp dw_setColor.cpp dw_soils.cpp linedrawer.cpp main.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents drawwidget.cpp dw_image.cpp dw_keyevent.cpp dw_limits.cpp dw_lines.cpp dw_main.cpp dw_mouseevent.cpp dw_paintevent.cpp dw_popupmode.cpp dw_setColor.cpp dw_soils.cpp linedrawer.cpp main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -416,35 +399,37 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-dw_image.o: dw_image.cpp drawwidget.h
+drawwidget.o: drawwidget.cpp drawwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o drawwidget.o drawwidget.cpp
+
+dw_image.o: dw_image.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_image.o dw_image.cpp
 
-dw_keyevent.o: dw_keyevent.cpp drawwidget.h
+dw_keyevent.o: dw_keyevent.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_keyevent.o dw_keyevent.cpp
 
-dw_limits.o: dw_limits.cpp drawwidget.h
+dw_limits.o: dw_limits.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_limits.o dw_limits.cpp
 
-dw_lines.o: dw_lines.cpp drawwidget.h
+dw_lines.o: dw_lines.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_lines.o dw_lines.cpp
 
-dw_main.o: dw_main.cpp drawwidget.h
+dw_main.o: dw_main.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_main.o dw_main.cpp
 
-dw_mouseevent.o: dw_mouseevent.cpp drawwidget.h
+dw_mouseevent.o: dw_mouseevent.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_mouseevent.o dw_mouseevent.cpp
 
-dw_paintevent.o: dw_paintevent.cpp linedrawer.h \
-		drawwidget.h
+dw_paintevent.o: dw_paintevent.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_paintevent.o dw_paintevent.cpp
 
-dw_popupmode.o: dw_popupmode.cpp drawwidget.h
+dw_popupmode.o: dw_popupmode.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_popupmode.o dw_popupmode.cpp
 
-dw_setColor.o: dw_setColor.cpp drawwidget.h
+dw_setColor.o: dw_setColor.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_setColor.o dw_setColor.cpp
 
-dw_soils.o: dw_soils.cpp drawwidget.h
+dw_soils.o: dw_soils.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_soils.o dw_soils.cpp
 
 linedrawer.o: linedrawer.cpp linedrawer.h \

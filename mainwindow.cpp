@@ -50,24 +50,26 @@ void MainWindow::on_actionOpslaan_triggered()
 {
     QString filename = QFileDialog::getSaveFileName(this, tr("Save"), QString());
 
-    m_view->saveImageToFile(filename);
+    // m_view->saveImageToFile(filename);
 
-    // if (filename.isEmpty())
-    // {
-    //     cout << "bi ba bad gaan\n";
-    //     return ;
-    // }
-    // else {
-    //     QFile file(filename);
-    //     if (!file.open(QFile::WriteOnly | QFile::Truncate))
-    //         // QMessageBox::informativeText(this, tr("Unable to open file"));
-    //         //     file.errorString();
-    //         return ;
-    //     QTextStream out(&file);
-    //     out << "Zerg OP, pls nerf\n";
-    //     out.flush();
-    //     file.close();
-    // }
+    if (filename.isEmpty())
+    {
+        cout << "bi ba bad gaan\n";
+        return ;
+    }
+    else {
+        QFile file(filename);
+        if (!file.open(QFile::WriteOnly | QFile::Truncate))
+        {
+            // QMessageBox::informativeText(this, tr("Unable to open file"));
+            //     file.errorString();
+            return ;
+        }
+        QTextStream out(&file);
+        out << "Zerg OP, pls nerf\n";
+        out.flush();
+        file.close();
+    }
 }
 
 
