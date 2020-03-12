@@ -18,6 +18,11 @@ void DrawWidget::saveImageToFile(const QString filename)
     m_img->save(filename, 0, -1);
 }
 
+/*
+ * whenever key plus or minus is pressed it increases the scale factor, however it is completely useless for now.
+ * Ctrl + z is the undo button, removes the last added point in your current line. the Ctrl + z queue resets when switching lines or soiltype.
+ */
+
 void DrawWidget::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Plus)
@@ -63,15 +68,6 @@ void DrawWidget::setTopLeft()
 void DrawWidget::setBottomRight()
 {
     m_bottomright = m_mouse_location;
-}
-
-void DrawWidget::set_points_to_null(QPoint p[1000])
-{
-    for (int i = 0; i < 1000; i++)
-    {
-        p[i].setX(0);
-        p[i].setY(0);
-    }
 }
 
 void DrawWidget::deletePoint()
@@ -122,14 +118,9 @@ int  DrawWidget::countLines()
 
 void DrawWidget::initSoils()
 {
-    soils[0].soilType = AK;
-    soils[1].soilType = HV;
-    soils[2].soilType = BV;
-    soils[3].soilType = K1;
-    soils[4].soilType = K2;
-    soils[5].soilType = K3;
-    soils[6].soilType = Z1;
-    soils[7].soilType = Z3;
+    for (int i = AK; i <= Z3; i++) {
+        soils[i].soilType = (e_soilType)i;
+    }
 }
 
 DrawWidget::DrawWidget(QWidget *parent) : QWidget(parent)
@@ -156,12 +147,9 @@ void DrawWidget::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() != Qt::RightButton && drawMode == 2)
     {
-        QPoint                  point;
-        int                     index_to_insert = 0;
-        t_line                  temp_line;
-        t_line                  line_to_compare;
+        int index_to_insert = 0;
 
-        point = event->pos();
+        QPoint point = event->pos();
         if (soils[current_soil].lines.isEmpty())
         {
             t_line newLine;
@@ -169,8 +157,7 @@ void DrawWidget::mousePressEvent(QMouseEvent *event)
             newLine.soilType = current_soil;
             soils[current_soil].lines.append(newLine);
         }
-
-        line_to_compare = soils[current_soil].lines.at(current_line);
+        t_line line_to_compare = soils[current_soil].lines.at(current_line);
 
         foreach (QPoint p, line_to_compare.locations) {
             if (p.x() > event->pos().x())
@@ -179,7 +166,7 @@ void DrawWidget::mousePressEvent(QMouseEvent *event)
         }
         last_inserted.append(index_to_insert);
 
-        temp_line = soils[current_soil].lines.at(current_line);
+        t_line temp_line = soils[current_soil].lines.at(current_line);
         temp_line.locations.insert(index_to_insert, point);
         soils[current_soil].lines.replace(current_line, temp_line);
     }
@@ -271,6 +258,11 @@ void DrawWidget::showPopupMenuLimits(const QPoint &pos)
     QMenu *menu = new QMenu;
     menu->addAction("Linksboven", this, SLOT(setTopLeft()));
     menu->addAction("Rechtsonder", this, SLOT(setBottomRight()));
+    menu->addAction("x links", this, SLOT(setLeftXScale()));
+    menu->addAction("x rechts", this, SLOT(setRightXScale()));
+    menu->addAction("y links", this, SLOT(setLeftYScale()));
+    menu->addAction("y rechts", this, SLOT(setRightYScale()));
+    cout << pos.x() << " " << pos.y() << "\n";
     menu->exec(this->mapToGlobal(pos));
 }
 
@@ -282,13 +274,16 @@ void DrawWidget::showPopupMenuLines(const QPoint &pos)
     menu->exec(this->mapToGlobal(pos));
 }
 
-QStringList soil_colors = QStringList() << "darkgray" << "chocolate" << "saddlebrown" << "palegreen" << "lime" << "darkgreen" << "khaki" << "yellow";
+QStringList soil_colors = QStringList() << "darkgray" << "chocolate" \
+    << "saddlebrown" << "palegreen" << "lime" << "darkgreen" \
+    << "khaki" << "yellow";
 
 QColor DrawWidget::setColor(e_soilType soil_type)
 {
     QColor	ret_color;
 
-    ret_color.setNamedColor(soil_colors[soil_type]);
+    cout << soil_type << "\n";
+    ret_color.setNamedColor(soil_colors.at((int)soil_type));
     return (ret_color);
 }
 

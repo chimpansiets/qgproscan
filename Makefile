@@ -138,16 +138,6 @@ DIST          = README.md \
 		qgproscan.pro linedrawer.h \
 		mainwindow.h \
 		drawwidget.h drawwidget.cpp \
-		dw_image.cpp \
-		dw_keyevent.cpp \
-		dw_limits.cpp \
-		dw_lines.cpp \
-		dw_main.cpp \
-		dw_mouseevent.cpp \
-		dw_paintevent.cpp \
-		dw_popupmode.cpp \
-		dw_setColor.cpp \
-		dw_soils.cpp \
 		linedrawer.cpp \
 		main.cpp \
 		mainwindow.cpp
@@ -401,36 +391,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 drawwidget.o: drawwidget.cpp drawwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o drawwidget.o drawwidget.cpp
-
-dw_image.o: dw_image.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_image.o dw_image.cpp
-
-dw_keyevent.o: dw_keyevent.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_keyevent.o dw_keyevent.cpp
-
-dw_limits.o: dw_limits.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_limits.o dw_limits.cpp
-
-dw_lines.o: dw_lines.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_lines.o dw_lines.cpp
-
-dw_main.o: dw_main.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_main.o dw_main.cpp
-
-dw_mouseevent.o: dw_mouseevent.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_mouseevent.o dw_mouseevent.cpp
-
-dw_paintevent.o: dw_paintevent.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_paintevent.o dw_paintevent.cpp
-
-dw_popupmode.o: dw_popupmode.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_popupmode.o dw_popupmode.cpp
-
-dw_setColor.o: dw_setColor.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_setColor.o dw_setColor.cpp
-
-dw_soils.o: dw_soils.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dw_soils.o dw_soils.cpp
 
 linedrawer.o: linedrawer.cpp linedrawer.h \
 		drawwidget.h

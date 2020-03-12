@@ -25,22 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    csvcalculator.cpp \
     drawwidget.cpp \
-    dw_image.cpp \
-    dw_keyevent.cpp \
-    dw_limits.cpp \
-    dw_lines.cpp \
-    dw_main.cpp \
-    dw_mouseevent.cpp \
-    dw_paintevent.cpp \
-    dw_popupmode.cpp \
-    dw_setColor.cpp \
-    dw_soils.cpp \
     linedrawer.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
+    csvcalculator.h \
     linedrawer.h \
         mainwindow.h \
     drawwidget.h

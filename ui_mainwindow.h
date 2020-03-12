@@ -59,7 +59,13 @@ public:
     QComboBox *soilBox;
     QComboBox *lineBox;
     QPushButton *lineButton;
+    QSpacerItem *horizontalSpacer_3;
+    QLabel *label_4;
+    QDoubleSpinBox *x_schaal_meter;
     QSpacerItem *horizontalSpacer;
+    QLabel *label_6;
+    QDoubleSpinBox *y_schaal_meter;
+    QSpacerItem *horizontalSpacer_2;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QMenuBar *menuBar;
@@ -187,9 +193,41 @@ public:
 
         horizontalLayout_2->addWidget(lineButton);
 
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_3);
+
+        label_4 = new QLabel(centralWidget);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        horizontalLayout_2->addWidget(label_4);
+
+        x_schaal_meter = new QDoubleSpinBox(centralWidget);
+        x_schaal_meter->setObjectName(QStringLiteral("x_schaal_meter"));
+        x_schaal_meter->setMaximum(1000);
+        x_schaal_meter->setSingleStep(50);
+
+        horizontalLayout_2->addWidget(x_schaal_meter);
+
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
+
+        label_6 = new QLabel(centralWidget);
+        label_6->setObjectName(QStringLiteral("label_6"));
+
+        horizontalLayout_2->addWidget(label_6);
+
+        y_schaal_meter = new QDoubleSpinBox(centralWidget);
+        y_schaal_meter->setObjectName(QStringLiteral("y_schaal_meter"));
+        y_schaal_meter->setMaximum(1000);
+        y_schaal_meter->setSingleStep(50);
+
+        horizontalLayout_2->addWidget(y_schaal_meter);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_2);
 
 
         verticalLayout->addLayout(horizontalLayout_2);
@@ -204,7 +242,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 919, 404));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 919, 403));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         verticalLayout->addWidget(scrollArea);
@@ -264,6 +302,9 @@ public:
          << QApplication::translate("MainWindow", "Z3", Q_NULLPTR)
         );
         lineButton->setText(QApplication::translate("MainWindow", "Add Line", Q_NULLPTR));
+        label_4->setText(QApplication::translate("MainWindow", "X schaal:", Q_NULLPTR));
+        x_schaal_meter->setSuffix(QString());
+        label_6->setText(QApplication::translate("MainWindow", "Y schaal:", Q_NULLPTR));
         menuBestand->setTitle(QApplication::translate("MainWindow", "Bestand", Q_NULLPTR));
     } // retranslateUi
 

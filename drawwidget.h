@@ -16,20 +16,20 @@
 
 enum eMode {MODE_LIMITS, MODE_LINES};
 
-typedef enum                s_soilType {
+typedef enum s_soilType {
     AK, HV, BV, K1, K2, K3, Z1, Z3,
-}                           e_soilType;
+} e_soilType;
 
-typedef struct              s_line {
-    QList<QPoint>           locations;
-    e_soilType              soilType;
-}                           t_line;
+typedef struct s_line {
+    QList<QPoint> locations;
+    e_soilType soilType;
+} t_line;
 
-typedef struct              s_soilList {
-    QList<t_line>           lines;
-    QList<QString>          lines_combobox;
-    e_soilType              soilType;
-}                           t_soilList;
+typedef struct s_soilList {
+    QList<t_line> lines;
+    QList<QString> lines_combobox;
+    e_soilType soilType;
+} t_soilList;
 
 class DrawWidget : public QWidget
 {
@@ -72,7 +72,6 @@ class DrawWidget : public QWidget
         int                     m_right = 0;
         double                  m_top = 0.;
         double                  m_bottom = 0.;
-        QPoint                  points[1000];
 
     private:
         // void createActions();
@@ -82,7 +81,6 @@ class DrawWidget : public QWidget
         void mouseMoveEvent(QMouseEvent* event);
         void mousePressEvent(QMouseEvent *event);
         void mouseReleaseEvent(QMouseEvent *event);
-        void set_points_to_null(QPoint p[1000]);
         QColor setColor(e_soilType soil_type);
         // void scaleImage(double factor);
 

@@ -127,9 +127,8 @@ void MainWindow::on_soilBox_currentIndexChanged(int index)
 
 void MainWindow::on_lineButton_clicked()
 {
-    QString         str;
+    QString         str = QString("Line %1").arg(ui->lineBox->count() + 1);
 
-    str = QString("Line %1").arg(ui->lineBox->count() + 1);
     m_view->addLineBackend(str, ui->lineBox->currentIndex());
     ui->lineBox->addItem(str);
     ui->lineBox->setCurrentIndex(ui->lineBox->count() - 1);
