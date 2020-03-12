@@ -48,10 +48,18 @@ void MainWindow::on_actionOpenen_triggered()
 
 void MainWindow::on_actionOpslaan_triggered()
 {
+    //Here the CSVCalculator class needs to be called and this
+    //should calculate the limits and scale. After this,
+    //it needs to assert the height of every layer every n meters.
+    //the user can specify n in the ui by giving an interval.
+    //still need to think strategies as to how I should get the
+    //height values from every line. perhaps a slope calculator
+    //function. This can then calculate the height at n-x from
+    //the starting point.
     QString filename = QFileDialog::getSaveFileName(this, tr("Save"), QString());
+    CSVCalculator calculator(m_view);
 
-    // m_view->saveImageToFile(filename);
-
+    calculator.
     if (filename.isEmpty())
     {
         cout << "bi ba bad gaan\n";

@@ -11,6 +11,7 @@
 #include <QSizePolicy>
 #include <iostream>
 #include <QVector>
+#include "csvcalculator.h"
 
 #define AMOUNT_OF_SOILTYPES 8
 

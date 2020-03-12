@@ -3,6 +3,22 @@
 
 using namespace std;
 
+DrawWidget::DrawWidget(QWidget *parent) : QWidget(parent)
+{
+    CSVCalculator   calc;
+
+    setMouseTracking(true);
+    setFocus();
+    setFocusPolicy(Qt::ClickFocus);
+    initSoils();
+    m_img = nullptr;
+    m_topleft = QPoint(-1,-1);
+    m_bottomright = QPoint(-1, -1);
+
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    setMode(eMode::MODE_LIMITS);
+}
+
 void DrawWidget::setImageFromFile(const QString filename)
 {
     if (m_img) delete(m_img);
@@ -93,6 +109,11 @@ void DrawWidget::deleteAllLines()
     update();
 }
 
+/*
+** this function actually adds a line to the corresponding soil.
+** as soon as this is created now points can be added to the line.
+*/
+
 void DrawWidget::addLineBackend(QString str, int index)
 {
     t_line  newLine;
@@ -123,25 +144,13 @@ void DrawWidget::initSoils()
     }
 }
 
-DrawWidget::DrawWidget(QWidget *parent) : QWidget(parent)
-{
-    setMouseTracking(true);
-    setFocus();
-    setFocusPolicy(Qt::ClickFocus);
-    initSoils();
-    m_img = nullptr;
-    m_topleft = QPoint(-1,-1);
-    m_bottomright = QPoint(-1, -1);
-
-    setContextMenuPolicy(Qt::CustomContextMenu);
-    setMode(eMode::MODE_LIMITS);
-}
-
 void DrawWidget::setDrawMode(int mode)
 {
     drawMode = mode;
     update();
 }
+
+
 
 void DrawWidget::mousePressEvent(QMouseEvent *event)
 {
