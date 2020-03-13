@@ -12,7 +12,8 @@ class CSVCalculator : public DrawWidget
     private:
         double calculateXScale(int x_begin, int x_end);
         double calculateYScale(int y_begin, int y_end);
-        double slope_calculator(int dy, int dx)
+        double slopeCalculator(int dy, int dx);
+        int getHeightAtX(int y_start, double slope, int x);
 
 		int x_scale_meters;
 		int x_scale_pixels;

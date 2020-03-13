@@ -65,14 +65,16 @@ class DrawWidget : public QWidget
         void setDrawMode(int mode);
     
     protected:
-        QImage                  *m_img;
-        QPoint                  m_topleft;
+        QImage *m_img;
+        QPoint m_topleft;
         QPoint                  m_bottomright;
         QPoint                  m_mouse_location;
         int                     m_left = 0;
         int                     m_right = 0;
         double                  m_top = 0.;
         double                  m_bottom = 0.;
+        int x_scale_meters;
+        int y_scale_meters;
 
     private:
         // void createActions();
