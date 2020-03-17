@@ -5,8 +5,6 @@ using namespace std;
 
 DrawWidget::DrawWidget(QWidget *parent) : QWidget(parent)
 {
-    CSVCalculator   calc;
-
     setMouseTracking(true);
     setFocus();
     setFocusPolicy(Qt::ClickFocus);
@@ -213,6 +211,8 @@ void DrawWidget::paintEvent(QPaintEvent *event)
         painter.drawLine(m_bottomright.x() - 5, m_bottomright.y(), m_bottomright.x() + 5, m_bottomright.y());
         painter.drawLine(m_bottomright.x(), m_bottomright.y() - 5, m_bottomright.x(), m_bottomright.y() + 5);
     }
+    if (left_x_scale.x() != -1)
+        painter.drawLine(left_x_scale.x(), left_x_scale.y() - 5, left_x_scale.x(), left_x_scale.y() + 5);
 
     QString xtxt = QString("%1").arg(m_mouse_location.x());
     QString ytxt = QString("%1").arg(m_mouse_location.y());
@@ -262,6 +262,26 @@ void DrawWidget::setMode(eMode mode)
     }
 }
 
+void DrawWidget::setLeftXScale()
+{
+    left_x_scale = m_mouse_location;
+}
+
+void DrawWidget::setRightXScale()
+{
+    right_x_scale = m_mouse_location;
+}
+
+void DrawWidget::setLeftYScale()
+{
+    left_y_scale = m_mouse_location;
+}
+
+void DrawWidget::setRightYScale()
+{
+    right_y_scale = m_mouse_location;
+}
+
 void DrawWidget::showPopupMenuLimits(const QPoint &pos)
 {
     QMenu *menu = new QMenu;
@@ -303,4 +323,9 @@ void DrawWidget::setSoil(int index)
     if (!last_inserted.isEmpty())
         last_inserted.clear();
     current_line = soils[current_soil].lines.count() - 1;
+}
+
+void DrawWidget::setInterval(int arg)
+{
+    interval = arg;
 }

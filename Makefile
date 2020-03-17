@@ -50,15 +50,19 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = drawwidget.cpp \
+SOURCES       = csvcalculator.cpp \
+		drawwidget.cpp \
 		linedrawer.cpp \
 		main.cpp \
-		mainwindow.cpp moc_mainwindow.cpp \
+		mainwindow.cpp moc_csvcalculator.cpp \
+		moc_mainwindow.cpp \
 		moc_drawwidget.cpp
-OBJECTS       = drawwidget.o \
+OBJECTS       = csvcalculator.o \
+		drawwidget.o \
 		linedrawer.o \
 		main.o \
 		mainwindow.o \
+		moc_csvcalculator.o \
 		moc_mainwindow.o \
 		moc_drawwidget.o
 DIST          = README.md \
@@ -116,7 +120,6 @@ DIST          = README.md \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -135,9 +138,11 @@ DIST          = README.md \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		qgproscan.pro linedrawer.h \
+		qgproscan.pro csvcalculator.h \
+		linedrawer.h \
 		mainwindow.h \
-		drawwidget.h drawwidget.cpp \
+		drawwidget.h csvcalculator.cpp \
+		drawwidget.cpp \
 		linedrawer.cpp \
 		main.cpp \
 		mainwindow.cpp
@@ -206,7 +211,6 @@ Makefile: qgproscan.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.co
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -284,7 +288,6 @@ Makefile: qgproscan.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.co
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -322,8 +325,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents linedrawer.h mainwindow.h drawwidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents drawwidget.cpp dw_image.cpp dw_keyevent.cpp dw_limits.cpp dw_lines.cpp dw_main.cpp dw_mouseevent.cpp dw_paintevent.cpp dw_popupmode.cpp dw_setColor.cpp dw_soils.cpp linedrawer.cpp main.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents csvcalculator.h linedrawer.h mainwindow.h drawwidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents csvcalculator.cpp drawwidget.cpp linedrawer.cpp main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -356,16 +359,23 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_drawwidget.cpp
+compiler_moc_header_make_all: moc_csvcalculator.cpp moc_mainwindow.cpp moc_drawwidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_drawwidget.cpp
+	-$(DEL_FILE) moc_csvcalculator.cpp moc_mainwindow.cpp moc_drawwidget.cpp
+moc_csvcalculator.cpp: csvcalculator.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hackerman1/Desktop/qgproscan_repo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include csvcalculator.h -o moc_csvcalculator.cpp
+
 moc_mainwindow.cpp: drawwidget.h \
+		csvcalculator.h \
 		mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hackerman1/Desktop/qgproscan_repo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
-moc_drawwidget.cpp: drawwidget.h \
+moc_drawwidget.cpp: csvcalculator.h \
+		drawwidget.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hackerman1/Desktop/qgproscan_repo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include drawwidget.h -o moc_drawwidget.cpp
@@ -389,21 +399,31 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-drawwidget.o: drawwidget.cpp drawwidget.h
+csvcalculator.o: csvcalculator.cpp csvcalculator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o csvcalculator.o csvcalculator.cpp
+
+drawwidget.o: drawwidget.cpp drawwidget.h \
+		csvcalculator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o drawwidget.o drawwidget.cpp
 
 linedrawer.o: linedrawer.cpp linedrawer.h \
-		drawwidget.h
+		drawwidget.h \
+		csvcalculator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o linedrawer.o linedrawer.cpp
 
 main.o: main.cpp mainwindow.h \
-		drawwidget.h
+		drawwidget.h \
+		csvcalculator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
 		drawwidget.h \
+		csvcalculator.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
+
+moc_csvcalculator.o: moc_csvcalculator.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_csvcalculator.o moc_csvcalculator.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

@@ -1,10 +1,11 @@
 #include "csvcalculator.h"
 
-CSVCalculator::CSVCalculator()
+CSVCalculator::CSVCalculator(DrawWidget *parent)
 {
-	calculateXScale();
-	calculateYScale();
+    x_scale = calculateXScale(left_x_scale.x(), right_x_scale.x());
+    y_scale = calculateYScale(left_y_scale.y(), right_y_scale.y());
 
+	// measureIntervalHeights();
 }
 
 double CSVCalculator::calculateXScale(int x_begin, int x_end)

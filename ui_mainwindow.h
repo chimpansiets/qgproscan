@@ -60,12 +60,14 @@ public:
     QComboBox *lineBox;
     QPushButton *lineButton;
     QSpacerItem *horizontalSpacer_3;
-    QLabel *label_4;
-    QDoubleSpinBox *x_schaal_meter;
+    QLabel *xschaalLabel;
+    QDoubleSpinBox *xSchaalMeter;
     QSpacerItem *horizontalSpacer;
-    QLabel *label_6;
-    QDoubleSpinBox *y_schaal_meter;
+    QLabel *yschaalLabel;
+    QDoubleSpinBox *ySchaalMeter;
     QSpacerItem *horizontalSpacer_2;
+    QLabel *intervaLabel;
+    QDoubleSpinBox *intervalBox;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QMenuBar *menuBar;
@@ -197,37 +199,49 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer_3);
 
-        label_4 = new QLabel(centralWidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        xschaalLabel = new QLabel(centralWidget);
+        xschaalLabel->setObjectName(QStringLiteral("xschaalLabel"));
 
-        horizontalLayout_2->addWidget(label_4);
+        horizontalLayout_2->addWidget(xschaalLabel);
 
-        x_schaal_meter = new QDoubleSpinBox(centralWidget);
-        x_schaal_meter->setObjectName(QStringLiteral("x_schaal_meter"));
-        x_schaal_meter->setMaximum(1000);
-        x_schaal_meter->setSingleStep(50);
+        xSchaalMeter = new QDoubleSpinBox(centralWidget);
+        xSchaalMeter->setObjectName(QStringLiteral("xSchaalMeter"));
+        xSchaalMeter->setMaximum(1000);
+        xSchaalMeter->setSingleStep(50);
 
-        horizontalLayout_2->addWidget(x_schaal_meter);
+        horizontalLayout_2->addWidget(xSchaalMeter);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
 
-        label_6 = new QLabel(centralWidget);
-        label_6->setObjectName(QStringLiteral("label_6"));
+        yschaalLabel = new QLabel(centralWidget);
+        yschaalLabel->setObjectName(QStringLiteral("yschaalLabel"));
 
-        horizontalLayout_2->addWidget(label_6);
+        horizontalLayout_2->addWidget(yschaalLabel);
 
-        y_schaal_meter = new QDoubleSpinBox(centralWidget);
-        y_schaal_meter->setObjectName(QStringLiteral("y_schaal_meter"));
-        y_schaal_meter->setMaximum(1000);
-        y_schaal_meter->setSingleStep(50);
+        ySchaalMeter = new QDoubleSpinBox(centralWidget);
+        ySchaalMeter->setObjectName(QStringLiteral("ySchaalMeter"));
+        ySchaalMeter->setMaximum(1000);
+        ySchaalMeter->setSingleStep(50);
 
-        horizontalLayout_2->addWidget(y_schaal_meter);
+        horizontalLayout_2->addWidget(ySchaalMeter);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
+
+        intervaLabel = new QLabel(centralWidget);
+        intervaLabel->setObjectName(QStringLiteral("intervaLabel"));
+
+        horizontalLayout_2->addWidget(intervaLabel);
+
+        intervalBox = new QDoubleSpinBox(centralWidget);
+        intervalBox->setObjectName(QStringLiteral("intervalBox"));
+        intervalBox->setMaximum(1000);
+        intervalBox->setSingleStep(10);
+
+        horizontalLayout_2->addWidget(intervalBox);
 
 
         verticalLayout->addLayout(horizontalLayout_2);
@@ -302,9 +316,10 @@ public:
          << QApplication::translate("MainWindow", "Z3", Q_NULLPTR)
         );
         lineButton->setText(QApplication::translate("MainWindow", "Add Line", Q_NULLPTR));
-        label_4->setText(QApplication::translate("MainWindow", "X schaal:", Q_NULLPTR));
-        x_schaal_meter->setSuffix(QString());
-        label_6->setText(QApplication::translate("MainWindow", "Y schaal:", Q_NULLPTR));
+        xschaalLabel->setText(QApplication::translate("MainWindow", "X schaal:", Q_NULLPTR));
+        xSchaalMeter->setSuffix(QString());
+        yschaalLabel->setText(QApplication::translate("MainWindow", "Y schaal:", Q_NULLPTR));
+        intervaLabel->setText(QApplication::translate("MainWindow", "Interval:", Q_NULLPTR));
         menuBestand->setTitle(QApplication::translate("MainWindow", "Bestand", Q_NULLPTR));
     } // retranslateUi
 

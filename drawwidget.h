@@ -11,7 +11,6 @@
 #include <QSizePolicy>
 #include <iostream>
 #include <QVector>
-#include "csvcalculator.h"
 
 #define AMOUNT_OF_SOILTYPES 8
 
@@ -45,6 +44,15 @@ class DrawWidget : public QWidget
         void addLineBackend(QString str, int index);
         void changeCurrentLine(int index);
         int  countLines();
+        void setInterval(int arg);
+
+        QPoint m_topleft;
+        QPoint m_bottomright;
+        int interval;
+        QPoint left_x_scale;
+        QPoint right_x_scale;
+        QPoint left_y_scale;
+        QPoint right_y_scale;
 
     signals:
         //void topLeftChanged();
@@ -66,13 +74,11 @@ class DrawWidget : public QWidget
     
     protected:
         QImage *m_img;
-        QPoint m_topleft;
-        QPoint                  m_bottomright;
-        QPoint                  m_mouse_location;
-        int                     m_left = 0;
-        int                     m_right = 0;
-        double                  m_top = 0.;
-        double                  m_bottom = 0.;
+        QPoint m_mouse_location;
+        int m_left = 0;
+        int m_right = 0;
+        double m_top = 0.;
+        double m_bottom = 0.;
         int x_scale_meters;
         int y_scale_meters;
 
@@ -84,6 +90,10 @@ class DrawWidget : public QWidget
         void mouseMoveEvent(QMouseEvent* event);
         void mousePressEvent(QMouseEvent *event);
         void mouseReleaseEvent(QMouseEvent *event);
+        void setLeftXScale();
+        void setRightXScale();
+        void setLeftYScale();
+        void setRightYScale();
         QColor setColor(e_soilType soil_type);
         // void scaleImage(double factor);
 

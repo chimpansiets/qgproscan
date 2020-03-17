@@ -38,6 +38,7 @@ class MainWindow : public QMainWindow
         void on_lineBox_currentIndexChanged(int index);
 
         void on_lineButton_clicked();
+        void on_intervalBox_valueChanged(double arg1);
 
 protected:
         DrawWidget *m_view;

@@ -10,6 +10,7 @@
 #include <QVBoxLayout>
 #include <QSizePolicy>
 #include <iostream>
+#include "csvcalculator.h"
 
 using namespace std;
 
@@ -59,7 +60,13 @@ void MainWindow::on_actionOpslaan_triggered()
     QString filename = QFileDialog::getSaveFileName(this, tr("Save"), QString());
     CSVCalculator calculator(m_view);
 
-    calculator.
+    for (int dx = 0; dx < m_view->m_bottomright.x(); dx += m_view->interval)
+    {
+        for (int i = 0; i < AMOUNT_OF_SOILTYPES; i++)
+        {
+            // cout << "lol\n";
+        }
+    }
     if (filename.isEmpty())
     {
         cout << "bi ba bad gaan\n";
@@ -145,4 +152,9 @@ void MainWindow::on_lineButton_clicked()
 void MainWindow::on_lineBox_currentIndexChanged(int index)
 {
     m_view->changeCurrentLine(index);
+}
+
+void MainWindow::on_intervalBox_valueChanged(double arg1)
+{
+    m_view->setInterval((int)arg1);
 }

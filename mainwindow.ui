@@ -211,14 +211,14 @@
          </spacer>
         </item>
         <item>
-         <widget class="QLabel" name="label_4">
+         <widget class="QLabel" name="xschaalLabel">
           <property name="text">
            <string>X schaal:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="x_schaal_meter">
+         <widget class="QDoubleSpinBox" name="xSchaalMeter">
           <property name="suffix">
            <string/>
           </property>
@@ -244,14 +244,14 @@
          </spacer>
         </item>
         <item>
-         <widget class="QLabel" name="label_6">
+         <widget class="QLabel" name="yschaalLabel">
           <property name="text">
            <string>Y schaal:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="y_schaal_meter">
+         <widget class="QDoubleSpinBox" name="ySchaalMeter">
           <property name="maximum">
            <double>1000.000000000000000</double>
           </property>
@@ -272,6 +272,23 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="intervaLabel">
+          <property name="text">
+           <string>Interval:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="intervalBox">
+          <property name="maximum">
+           <double>1000.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>10.000000000000000</double>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
