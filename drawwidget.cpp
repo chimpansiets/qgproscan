@@ -196,6 +196,7 @@ void DrawWidget::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
 
     QPainter painter(this);
+    QPen linePen(Qt::black);
     // LineDrawer ld;
 
     // ld.drawCursorFollow(painter);
@@ -211,9 +212,19 @@ void DrawWidget::paintEvent(QPaintEvent *event)
         painter.drawLine(m_bottomright.x() - 5, m_bottomright.y(), m_bottomright.x() + 5, m_bottomright.y());
         painter.drawLine(m_bottomright.x(), m_bottomright.y() - 5, m_bottomright.x(), m_bottomright.y() + 5);
     }
+    linePen.setColor(Qt::red);
+    painter.setPen(linePen);
     if (left_x_scale.x() != -1)
         painter.drawLine(left_x_scale.x(), left_x_scale.y() - 5, left_x_scale.x(), left_x_scale.y() + 5);
+    if (right_x_scale.x() != -1)
+        painter.drawLine(right_x_scale.x(), left_x_scale.y() - 5, right_x_scale.x(), left_x_scale.y() + 5);
+    if (left_y_scale.x() != -1)
+        painter.drawLine(left_y_scale.x() - 5, left_y_scale.y(), left_y_scale.x() + 5, left_y_scale.y());
+    if (right_y_scale.x() != -1)
+        painter.drawLine(left_y_scale.x() - 5, right_y_scale.y(), left_y_scale.x() + 5, right_y_scale.y());
 
+    linePen.setColor(Qt::black);
+    painter.setPen(linePen);
     QString xtxt = QString("%1").arg(m_mouse_location.x());
     QString ytxt = QString("%1").arg(m_mouse_location.y());
     if(m_topleft.x()!=-1 && m_bottomright.x()!=-1){
@@ -233,7 +244,6 @@ void DrawWidget::paintEvent(QPaintEvent *event)
     int tw = fm.width(msg);
     painter.drawText(m_mouse_location.x()-tw, m_mouse_location.y(), msg);
 
-    QPen linePen(Qt::black);
     linePen.setWidth(2);
 
     QVector<QPoint> vector_points;
@@ -287,10 +297,10 @@ void DrawWidget::showPopupMenuLimits(const QPoint &pos)
     QMenu *menu = new QMenu;
     menu->addAction("Linksboven", this, SLOT(setTopLeft()));
     menu->addAction("Rechtsonder", this, SLOT(setBottomRight()));
-    menu->addAction("x links", this, SLOT(setLeftXScale()));
-    menu->addAction("x rechts", this, SLOT(setRightXScale()));
-    menu->addAction("y links", this, SLOT(setLeftYScale()));
-    menu->addAction("y rechts", this, SLOT(setRightYScale()));
+    menu->addAction("X links", this, SLOT(setLeftXScale()));
+    menu->addAction("X rechts", this, SLOT(setRightXScale()));
+    menu->addAction("Y links", this, SLOT(setLeftYScale()));
+    menu->addAction("Y rechts", this, SLOT(setRightYScale()));
     cout << pos.x() << " " << pos.y() << "\n";
     menu->exec(this->mapToGlobal(pos));
 }

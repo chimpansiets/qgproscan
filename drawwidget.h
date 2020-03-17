@@ -49,10 +49,10 @@ class DrawWidget : public QWidget
         QPoint m_topleft;
         QPoint m_bottomright;
         int interval;
-        QPoint left_x_scale;
-        QPoint right_x_scale;
-        QPoint left_y_scale;
-        QPoint right_y_scale;
+        QPoint left_x_scale = QPoint(-1, -1);
+        QPoint right_x_scale = QPoint(-1, -1);
+        QPoint left_y_scale = QPoint(-1, -1);
+        QPoint right_y_scale = QPoint(-1, -1);
 
     signals:
         //void topLeftChanged();
@@ -71,6 +71,10 @@ class DrawWidget : public QWidget
         void deletePoint();
         void deleteAllLines();
         void setDrawMode(int mode);
+        void setLeftXScale();
+        void setRightXScale();
+        void setLeftYScale();
+        void setRightYScale();
     
     protected:
         QImage *m_img;
@@ -90,10 +94,6 @@ class DrawWidget : public QWidget
         void mouseMoveEvent(QMouseEvent* event);
         void mousePressEvent(QMouseEvent *event);
         void mouseReleaseEvent(QMouseEvent *event);
-        void setLeftXScale();
-        void setRightXScale();
-        void setLeftYScale();
-        void setRightYScale();
         QColor setColor(e_soilType soil_type);
         // void scaleImage(double factor);
 

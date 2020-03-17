@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DrawWidget_t {
-    QByteArrayData data[19];
-    char stringdata0[181];
+    QByteArrayData data[23];
+    char stringdata0[239];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -49,14 +49,20 @@ QT_MOC_LITERAL(14, 131, 5), // "right"
 QT_MOC_LITERAL(15, 137, 11), // "deletePoint"
 QT_MOC_LITERAL(16, 149, 14), // "deleteAllLines"
 QT_MOC_LITERAL(17, 164, 11), // "setDrawMode"
-QT_MOC_LITERAL(18, 176, 4) // "mode"
+QT_MOC_LITERAL(18, 176, 4), // "mode"
+QT_MOC_LITERAL(19, 181, 13), // "setLeftXScale"
+QT_MOC_LITERAL(20, 195, 14), // "setRightXScale"
+QT_MOC_LITERAL(21, 210, 13), // "setLeftYScale"
+QT_MOC_LITERAL(22, 224, 14) // "setRightYScale"
 
     },
     "DrawWidget\0setTopLeft\0\0setBottomRight\0"
     "showPopupMenuLimits\0pos\0showPopupMenuLines\0"
     "setTop\0top\0setBottom\0bottom\0setLeft\0"
     "left\0setRight\0right\0deletePoint\0"
-    "deleteAllLines\0setDrawMode\0mode"
+    "deleteAllLines\0setDrawMode\0mode\0"
+    "setLeftXScale\0setRightXScale\0setLeftYScale\0"
+    "setRightYScale"
 };
 #undef QT_MOC_LITERAL
 
@@ -66,7 +72,7 @@ static const uint qt_meta_data_DrawWidget[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      15,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -74,17 +80,21 @@ static const uint qt_meta_data_DrawWidget[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   69,    2, 0x08 /* Private */,
-       3,    0,   70,    2, 0x08 /* Private */,
-       4,    1,   71,    2, 0x08 /* Private */,
-       6,    1,   74,    2, 0x08 /* Private */,
-       7,    1,   77,    2, 0x08 /* Private */,
-       9,    1,   80,    2, 0x08 /* Private */,
-      11,    1,   83,    2, 0x08 /* Private */,
-      13,    1,   86,    2, 0x08 /* Private */,
-      15,    0,   89,    2, 0x08 /* Private */,
-      16,    0,   90,    2, 0x08 /* Private */,
-      17,    1,   91,    2, 0x08 /* Private */,
+       1,    0,   89,    2, 0x08 /* Private */,
+       3,    0,   90,    2, 0x08 /* Private */,
+       4,    1,   91,    2, 0x08 /* Private */,
+       6,    1,   94,    2, 0x08 /* Private */,
+       7,    1,   97,    2, 0x08 /* Private */,
+       9,    1,  100,    2, 0x08 /* Private */,
+      11,    1,  103,    2, 0x08 /* Private */,
+      13,    1,  106,    2, 0x08 /* Private */,
+      15,    0,  109,    2, 0x08 /* Private */,
+      16,    0,  110,    2, 0x08 /* Private */,
+      17,    1,  111,    2, 0x08 /* Private */,
+      19,    0,  114,    2, 0x08 /* Private */,
+      20,    0,  115,    2, 0x08 /* Private */,
+      21,    0,  116,    2, 0x08 /* Private */,
+      22,    0,  117,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -98,6 +108,10 @@ static const uint qt_meta_data_DrawWidget[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   18,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -119,6 +133,10 @@ void DrawWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 8: _t->deletePoint(); break;
         case 9: _t->deleteAllLines(); break;
         case 10: _t->setDrawMode((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 11: _t->setLeftXScale(); break;
+        case 12: _t->setRightXScale(); break;
+        case 13: _t->setLeftYScale(); break;
+        case 14: _t->setRightYScale(); break;
         default: ;
         }
     }
@@ -149,13 +167,13 @@ int DrawWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 15;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 15)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 11;
+        _id -= 15;
     }
     return _id;
 }
