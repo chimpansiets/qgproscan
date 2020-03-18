@@ -59,14 +59,16 @@ void MainWindow::on_actionOpslaan_triggered()
     //the corresponding point in front of n-x.
     QString filename = QFileDialog::getSaveFileName(this, tr("Save"), QString());
     CSVCalculator calculator(m_view);
-    QPoint corr_point;
+    int corr_index;
     int height = 0;
+    double slope = 0.0;
 
     for (int dx = 0; dx < m_view->m_bottomright.x(); dx += m_view->interval)
     {
         for (int i = 0; i < AMOUNT_OF_SOILTYPES; i++)
         {
-            corr_point = calculator.find_corresponding_point(m_view->soils[i].lines, dx);
+            corr_index = calculator.find_corresponding_index(m_view->soils[i].lines, dx);
+            slope = calculator.slopeCalculator(m_view->soils[i].lines.loca);
             height = corr_point.y() + ((dx - corr_point.x()) * calculator.slope);
             cout << "Height at " << dx << " is " << height << "pix\n";
         }
