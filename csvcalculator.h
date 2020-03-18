@@ -10,10 +10,13 @@ class CSVCalculator : public DrawWidget
     Q_OBJECT
     public:
         explicit CSVCalculator(DrawWidget *parent);
+        QPoint find_corresponding_point(QList<t_line> lines, int dx);
+        double slope;
+
     private:
         double calculateXScale(int x_begin, int x_end);
         double calculateYScale(int y_begin, int y_end);
-        double slopeCalculator(int dy, int dx);
+        void slopeCalculator(int dy, int dx);
         int getHeightAtX(int y_start, double slope, int x);
         void measureIntervalHeights();
 

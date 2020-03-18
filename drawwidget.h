@@ -51,8 +51,8 @@ class DrawWidget : public QWidget
         int interval;
         QPoint left_x_scale = QPoint(-1, -1);
         QPoint right_x_scale = QPoint(-1, -1);
-        QPoint left_y_scale = QPoint(-1, -1);
-        QPoint right_y_scale = QPoint(-1, -1);
+        QPoint top_y_scale = QPoint(-1, -1);
+        QPoint bottom_y_scale = QPoint(-1, -1);
 
     signals:
         //void topLeftChanged();

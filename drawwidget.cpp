@@ -218,10 +218,10 @@ void DrawWidget::paintEvent(QPaintEvent *event)
         painter.drawLine(left_x_scale.x(), left_x_scale.y() - 5, left_x_scale.x(), left_x_scale.y() + 5);
     if (right_x_scale.x() != -1)
         painter.drawLine(right_x_scale.x(), left_x_scale.y() - 5, right_x_scale.x(), left_x_scale.y() + 5);
-    if (left_y_scale.x() != -1)
-        painter.drawLine(left_y_scale.x() - 5, left_y_scale.y(), left_y_scale.x() + 5, left_y_scale.y());
-    if (right_y_scale.x() != -1)
-        painter.drawLine(left_y_scale.x() - 5, right_y_scale.y(), left_y_scale.x() + 5, right_y_scale.y());
+    if (top_y_scale.x() != -1)
+        painter.drawLine(top_y_scale.x() - 5, top_y_scale.y(), top_y_scale.x() + 5, top_y_scale.y());
+    if (bottom_y_scale.x() != -1)
+        painter.drawLine(top_y_scale.x() - 5, bottom_y_scale.y(), top_y_scale.x() + 5, bottom_y_scale.y());
 
     linePen.setColor(Qt::black);
     painter.setPen(linePen);
@@ -284,12 +284,12 @@ void DrawWidget::setRightXScale()
 
 void DrawWidget::setLeftYScale()
 {
-    left_y_scale = m_mouse_location;
+    top_y_scale = m_mouse_location;
 }
 
 void DrawWidget::setRightYScale()
 {
-    right_y_scale = m_mouse_location;
+    bottom_y_scale = m_mouse_location;
 }
 
 void DrawWidget::showPopupMenuLimits(const QPoint &pos)
@@ -297,10 +297,10 @@ void DrawWidget::showPopupMenuLimits(const QPoint &pos)
     QMenu *menu = new QMenu;
     menu->addAction("Linksboven", this, SLOT(setTopLeft()));
     menu->addAction("Rechtsonder", this, SLOT(setBottomRight()));
-    menu->addAction("X links", this, SLOT(setLeftXScale()));
-    menu->addAction("X rechts", this, SLOT(setRightXScale()));
-    menu->addAction("Y links", this, SLOT(setLeftYScale()));
-    menu->addAction("Y rechts", this, SLOT(setRightYScale()));
+    menu->addAction("X Scaal links", this, SLOT(setLeftXScale()));
+    menu->addAction("X Schaal rechts", this, SLOT(setRightXScale()));
+    menu->addAction("Y Schaal boven", this, SLOT(setLeftYScale()));
+    menu->addAction("Y Schaal onder", this, SLOT(setRightYScale()));
     cout << pos.x() << " " << pos.y() << "\n";
     menu->exec(this->mapToGlobal(pos));
 }

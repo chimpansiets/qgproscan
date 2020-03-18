@@ -56,15 +56,19 @@ void MainWindow::on_actionOpslaan_triggered()
     //still need to think strategies as to how I should get the
     //height values from every line. perhaps a slope calculator
     //function. This can then calculate the height at n-x from
-    //the starting point.
+    //the corresponding point in front of n-x.
     QString filename = QFileDialog::getSaveFileName(this, tr("Save"), QString());
     CSVCalculator calculator(m_view);
+    QPoint corr_point;
+    int height = 0;
 
     for (int dx = 0; dx < m_view->m_bottomright.x(); dx += m_view->interval)
     {
         for (int i = 0; i < AMOUNT_OF_SOILTYPES; i++)
         {
-            // cout << "lol\n";
+            corr_point = calculator.find_corresponding_point(m_view->soils[i].lines, dx);
+            height = corr_point.y() + ((dx - corr_point.x()) * calculator.slope);
+            cout << "Height at " << dx << " is " << height << "pix\n";
         }
     }
     if (filename.isEmpty())

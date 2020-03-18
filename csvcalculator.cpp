@@ -3,7 +3,7 @@
 CSVCalculator::CSVCalculator(DrawWidget *parent)
 {
     x_scale = calculateXScale(left_x_scale.x(), right_x_scale.x());
-    y_scale = calculateYScale(left_y_scale.y(), right_y_scale.y());
+    y_scale = calculateYScale(top_y_scale.y(), bottom_y_scale.y());
 
 	// measureIntervalHeights();
 }
@@ -20,4 +20,19 @@ double CSVCalculator::calculateYScale(int y_begin, int y_end)
 	int	y_delta = y_end - y_begin;
 
 	return ((double) y_delta / y_scale_meters);
+}
+
+QPoint CSVCalculator::find_corresponding_point(QList<t_line> lines, int dx)
+{
+	foreach (t_line curr_line, lines) {
+		for (int i = 0; i < curr_line.locations.count(); i++) {
+			if (curr_line.locations.at(i).x() > dx) {
+				return (curr_line.locations.at(i - 1));
+			}
+		}
+	}
+}
+
+void slopeCalculator(int dy, int dx) {
+	
 }
