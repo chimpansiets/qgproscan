@@ -53,6 +53,7 @@ class DrawWidget : public QWidget
         QPoint right_x_scale = QPoint(-1, -1);
         QPoint top_y_scale = QPoint(-1, -1);
         QPoint bottom_y_scale = QPoint(-1, -1);
+        t_soilList soils[8];
 
     signals:
         //void topLeftChanged();
@@ -98,7 +99,6 @@ class DrawWidget : public QWidget
         // void scaleImage(double factor);
 
         // double scaleFactor;
-        t_soilList              soils[8];
         e_soilType              current_soil = AK;
         int                     current_line = 0;
         QList<int>              last_inserted;

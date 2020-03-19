@@ -22,19 +22,24 @@ double CSVCalculator::calculateYScale(int y_begin, int y_end)
 	return ((double) y_delta / y_scale_meters);
 }
 
-QList<int> CSVCalculator::find_corresponding_point(QList<t_line> lines, int dx)
+int CSVCalculator::find_corresponding_point(QList<t_line> lines, int dx)
 {
 	QList<int> index_lst;
 
 	foreach (t_line curr_line, lines) {
 		for (int i = 0; i < curr_line.locations.count(); i++) {
 			if (curr_line.locations.at(i).x() > dx) {
-				Qindex_lst.append(i - 1);
+				return (i - 1);
+				// return (curr_line.locations.at(i - 1));
+				// Qindex_lst.append(i - 1);
 			}
 		}
 	}
 }
 
-void slopeCalculator(QPoint p1, QPoint p2) {
+double CSVCalculator::slopeCalculator(QPoint p1, QPoint p2) {
+	double dy = p2.y() - p1.y();
+	double dx = p2.x() - p1.x();
 
+	return ((double)dy / dx);
 }

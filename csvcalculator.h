@@ -12,7 +12,6 @@ class CSVCalculator : public DrawWidget
         explicit CSVCalculator(DrawWidget *parent);
         int find_corresponding_point(QList<t_line> lines, int dx);
         double slopeCalculator(QPoint p1, QPoint p2);
-        double slope;
 
     private:
         double calculateXScale(int x_begin, int x_end);

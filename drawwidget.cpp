@@ -321,7 +321,6 @@ QColor DrawWidget::setColor(e_soilType soil_type)
 {
     QColor	ret_color;
 
-    cout << soil_type << "\n";
     ret_color.setNamedColor(soil_colors.at((int)soil_type));
     return (ret_color);
 }
