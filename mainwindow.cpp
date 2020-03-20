@@ -63,6 +63,7 @@ void MainWindow::on_actionOpslaan_triggered()
     int corr_index;
     int height = 0;
     double slope = 0.0;
+    int j = 0;
 
     for (int dx = 0; dx < m_view->m_bottomright.x(); dx += m_view->interval)
     {
@@ -70,11 +71,19 @@ void MainWindow::on_actionOpslaan_triggered()
         {
             if (m_view->soils[i].lines.count() != 0)
             {
-                corr_index = calculator.find_corresponding_point(m_view->soils[i].lines, dx);
-                p = m_view->soils[i].lines.at(0).locations.at(corr_index);
-                slope = calculator.slopeCalculator(m_view->soils[i].lines.at(0).locations.at(corr_index), m_view->soils[i].lines.at(0).locations.at(corr_index + 1));
-                height = p.y() + ((dx - p.x()) * slope);
-                cout << "Height at " << dx << " is " << height << "pix\n";
+                // for every line in soils[i], get corr_index of locations before dx.
+                // then count height
+                foreach(t_line curr_line, m_view->soils[i].lines)
+                {
+                    j++;
+                    corr_index = calculator.find_corresponding_point(curr_line, dx);
+                    p = curr_line.locations.at(corr_index);
+                    slope = calculator.slopeCalculator(curr_line.locations.at(corr_index), curr_line.locations.at(corr_index + 1));
+                    height = p.y() + ((dx - p.x()) * slope);
+                    cout << "soil: " << i << "line: " << j << "\n";
+                    cout << "Height at " << dx << " is " << height << "pix\n";
+                }
+                j = 0;
             }
         }
     }

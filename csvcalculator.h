@@ -10,7 +10,7 @@ class CSVCalculator : public DrawWidget
     Q_OBJECT
     public:
         explicit CSVCalculator(DrawWidget *parent);
-        int find_corresponding_point(QList<t_line> lines, int dx);
+        int find_corresponding_point(t_line line, int dx);
         double slopeCalculator(QPoint p1, QPoint p2);
 
     private:

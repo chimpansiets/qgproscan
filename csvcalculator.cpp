@@ -22,17 +22,15 @@ double CSVCalculator::calculateYScale(int y_begin, int y_end)
 	return ((double) y_delta / y_scale_meters);
 }
 
-int CSVCalculator::find_corresponding_point(QList<t_line> lines, int dx)
+int CSVCalculator::find_corresponding_point(t_line curr_line, int dx)
 {
-	QList<int> index_lst;
+	int index;
 
-	foreach (t_line curr_line, lines) {
-		for (int i = 0; i < curr_line.locations.count(); i++) {
-			if (curr_line.locations.at(i).x() > dx) {
-				return (i - 1);
-				// return (curr_line.locations.at(i - 1));
-				// Qindex_lst.append(i - 1);
-			}
+	for (int i = 0; i < curr_line.locations.count(); i++) {
+		if (curr_line.locations.at(i).x() > dx) {
+			return (i - 1);
+			// return (curr_line.locations.at(i - 1));
+			// Qindex_lst.append(i - 1);
 		}
 	}
 }
