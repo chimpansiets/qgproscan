@@ -54,6 +54,8 @@ class DrawWidget : public QWidget
         QPoint top_y_scale = QPoint(-1, -1);
         QPoint bottom_y_scale = QPoint(-1, -1);
         t_soilList soils[8];
+        int x_scale_meters;
+        int y_scale_meters;
 
     signals:
         //void topLeftChanged();
@@ -84,8 +86,6 @@ class DrawWidget : public QWidget
         int m_right = 0;
         double m_top = 0.;
         double m_bottom = 0.;
-        int x_scale_meters;
-        int y_scale_meters;
 
     private:
         // void createActions();

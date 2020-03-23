@@ -40,6 +40,9 @@ class MainWindow : public QMainWindow
         void on_lineButton_clicked();
         void on_intervalBox_valueChanged(double arg1);
 
+        void on_xSchaalMeter_valueChanged(double arg1);
+        void on_ySchaalMeter_valueChanged(double arg1);
+
 protected:
         DrawWidget *m_view;
 

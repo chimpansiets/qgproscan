@@ -65,6 +65,8 @@ void MainWindow::on_actionOpslaan_triggered()
     double slope = 0.0;
     int j = 0;
 
+    cout << "x scale: " << calculator.x_scale << "\n";
+    cout << "y scale: " << calculator.y_scale << "\n";
     for (int dx = 0; dx < m_view->m_bottomright.x(); dx += m_view->interval)
     {
         for (int i = 0; i < AMOUNT_OF_SOILTYPES; i++)
@@ -177,4 +179,14 @@ void MainWindow::on_lineBox_currentIndexChanged(int index)
 void MainWindow::on_intervalBox_valueChanged(double arg1)
 {
     m_view->setInterval((int)arg1);
+}
+
+void MainWindow::on_xSchaalMeter_valueChanged(double arg1)
+{
+    m_view->x_scale_meters = arg1;
+}
+
+void MainWindow::on_ySchaalMeter_valueChanged(double arg1)
+{
+    m_view->y_scale_meters = arg1;
 }
