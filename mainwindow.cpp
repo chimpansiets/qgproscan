@@ -83,7 +83,7 @@ void MainWindow::on_actionOpslaan_triggered()
                     slope = calculator.slopeCalculator(curr_line.locations.at(corr_index), curr_line.locations.at(corr_index + 1));
                     height = p.y() + ((dx - p.x()) * slope);
                     cout << "soil: " << i << "line: " << j << "\n";
-                    cout << "Height at " << dx << " is " << height << "pixels and " << (height - m_view->m_topleft.y()) / calculator.y_scale << "meters\n";
+                    cout << "Height at " << dx << " is " << height << "pixels and " << ((height - m_view->m_topleft.y()) / calculator.y_scale) - m_view->m_top << "meters\n";
                 }
                 j = 0;
             }
@@ -190,3 +190,4 @@ void MainWindow::on_ySchaalMeter_valueChanged(double arg1)
 {
     m_view->y_scale_meters = (int)arg1;
 }
+
