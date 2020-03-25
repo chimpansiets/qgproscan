@@ -24,6 +24,8 @@ class CSVCalculator : public DrawWidget
 
 		int x_scale_pixels;
         int y_scale_pixels;
+        int x_scale_meters;
+        int y_scale_meters;
 
 signals:
 

@@ -4,14 +4,18 @@ using namespace std;
 
 CSVCalculator::CSVCalculator(DrawWidget *parent)
 {
-    x_scale = calculateXScale(left_x_scale.x(), right_x_scale.x());
-    y_scale = calculateYScale(top_y_scale.y(), bottom_y_scale.y());
+	x_scale_meters = parent->x_scale_meters;
+	y_scale_meters = parent->y_scale_meters;
 
+    x_scale = calculateXScale(parent->left_x_scale.x(), parent->right_x_scale.x());
+    y_scale = calculateYScale(parent->top_y_scale.y(), parent->bottom_y_scale.y());
 	// measureIntervalHeights();
 }
 
 double CSVCalculator::calculateXScale(int x_begin, int x_end)
 {
+	cout << x_end << "\n";
+	cout << x_begin << "\n";
 	int	x_delta = x_end - x_begin;
 
 	cout << "x delta: " << x_delta << " x_scale_meters: " << x_scale_meters << "\n";
