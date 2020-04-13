@@ -67,31 +67,9 @@ void MainWindow::on_actionOpslaan_triggered()
 
     cout << "x scale: " << calculator.x_scale << "pix/m\n";
     cout << "y scale: " << calculator.y_scale << "pix/m\n";
-    for (int dx = m_view->m_topleft.x(); dx < m_view->m_bottomright.x(); dx += m_view->interval)
-    {
-        for (int i = 0; i < AMOUNT_OF_SOILTYPES; i++)
-        {
-            if (m_view->soils[i].lines.count() != 0)
-            {
-                // for every line in soils[i], get corr_index of locations before dx.
-                // then count height
-                foreach(t_line curr_line, m_view->soils[i].lines)
-                {
-                    j++;
-                    corr_index = calculator.find_corresponding_point(curr_line, dx);
-                    p = curr_line.locations.at(corr_index);
-                    slope = calculator.slopeCalculator(curr_line.locations.at(corr_index), curr_line.locations.at(corr_index + 1));
-                    height = p.y() + ((dx - p.x()) * slope);
-                    cout << "soil: " << i << "line: " << j << "\n";
-                    cout << "Height at " << dx << " is " << height << "pixels and " << ((height - m_view->m_topleft.y()) / calculator.y_scale) - m_view->m_top << "meters\n";
-                }
-                j = 0;
-            }
-        }
-    }
     if (filename.isEmpty())
     {
-        cout << "bi ba bad gaan\n";
+        cout << "filename error\n";
         return ;
     }
     else {
@@ -103,7 +81,32 @@ void MainWindow::on_actionOpslaan_triggered()
             return ;
         }
         QTextStream out(&file);
-        out << "Zerg OP, pls nerf\n";
+
+        out << "soil, line, x_position, height\n";
+        for (int dx = m_view->m_topleft.x(); dx < m_view->m_bottomright.x(); dx += m_view->interval)
+        {
+            for (int i = 0; i < AMOUNT_OF_SOILTYPES; i++)
+            {
+                if (m_view->soils[i].lines.count() != 0)
+                {
+                    // for every line in soils[i], get corr_index of locations before dx.
+                    // then count height
+                    foreach(t_line curr_line, m_view->soils[i].lines)
+                    {
+                        j++;
+                        corr_index = calculator.find_corresponding_point(curr_line, dx);
+                        p = curr_line.locations.at(corr_index);
+                        slope = calculator.slopeCalculator(curr_line.locations.at(corr_index), curr_line.locations.at(corr_index + 1));
+                        height = p.y() + ((dx - p.x()) * slope);
+                        // cout << "soil: " << i << "line: " << j << "\n";
+                        // cout << "Height at " << dx << " is " << height << "pixels and " << ((height - m_view->m_topleft.y()) / calculator.y_scale) - m_view->m_top << "meters\n";
+                        out << i << ", " << j << ", " << dx << ", " << ((height - m_view->m_topleft.y()) / calculator.y_scale) - m_view->m_top << "\n";
+                    }
+                    j = 0;
+                }
+            }
+        }
+
         out.flush();
         file.close();
     }
