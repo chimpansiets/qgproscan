@@ -12,6 +12,7 @@ class CSVCalculator : public DrawWidget
         explicit CSVCalculator(DrawWidget *parent);
         int find_corresponding_point(t_line line, int dx);
         double slopeCalculator(QPoint p1, QPoint p2);
+        QString select_soil(int i);
 
         double x_scale;
         double y_scale;

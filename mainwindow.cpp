@@ -81,6 +81,7 @@ void MainWindow::on_actionOpslaan_triggered()
             return ;
         }
         QTextStream out(&file);
+        QString soil;
 
         out << "soil, line, x_position, height\n";
         for (int dx = m_view->m_topleft.x(); dx < m_view->m_bottomright.x(); dx += m_view->interval)
@@ -98,9 +99,8 @@ void MainWindow::on_actionOpslaan_triggered()
                         p = curr_line.locations.at(corr_index);
                         slope = calculator.slopeCalculator(curr_line.locations.at(corr_index), curr_line.locations.at(corr_index + 1));
                         height = p.y() + ((dx - p.x()) * slope);
-                        // cout << "soil: " << i << "line: " << j << "\n";
-                        // cout << "Height at " << dx << " is " << height << "pixels and " << ((height - m_view->m_topleft.y()) / calculator.y_scale) - m_view->m_top << "meters\n";
-                        out << i << ", " << j << ", " << dx << ", " << ((height - m_view->m_topleft.y()) / calculator.y_scale) - m_view->m_top << "\n";
+                        soil = calculator.select_soil(i);
+                        out << soil << ", " << j << ", " << dx << ", " << ((height - m_view->m_topleft.y()) / calculator.y_scale) - m_view->m_top << "\n";
                     }
                     j = 0;
                 }

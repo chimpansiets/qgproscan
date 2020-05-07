@@ -28,8 +28,6 @@ double CSVCalculator::calculateYScale(int y_begin, int y_end)
 
 int CSVCalculator::find_corresponding_point(t_line curr_line, int dx)
 {
-	int index;
-
 	for (int i = 0; i < curr_line.locations.count(); i++) {
 		if (curr_line.locations.at(i).x() > dx) {
 			return (i - 1);
@@ -44,4 +42,11 @@ double CSVCalculator::slopeCalculator(QPoint p1, QPoint p2) {
 	double dx = p2.x() - p1.x();
 
 	return ((double)dy / dx);
+}
+
+QString CSVCalculator::select_soil(int i)
+{
+	QList<QString> soils = {"AK", "HV", "BV", "K1", "K2", "K3", "Z1", "Z3"};
+
+	return (soils[i]);
 }
